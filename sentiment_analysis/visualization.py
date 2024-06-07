@@ -3,10 +3,11 @@ from io import BytesIO
 import base64
 from .models import Sentiment
 from django.db.models import Avg, Count
+from django.db.models.functions import TruncDate, TruncHour
 
 def generate_sentiment_trend_chart(token_symbol):
     aggregation = Sentiment.objects.filter(token__symbol=token_symbol) \
-        .extra({'day': "date(created_at)"}) \
+        .annotate(day=TruncDate('created_at')) \
         .values('day') \
         .annotate(average_sentiment=Avg('sentiment_score'), count=Count('id'))
 
@@ -33,15 +34,16 @@ def generate_sentiment_trend_chart(token_symbol):
 
 
 
+
 def generate_sentiment_trend_chart_hour(token_symbol, time_frame='day'):
     if time_frame == 'day':
         aggregation = Sentiment.objects.filter(token__symbol=token_symbol) \
-            .extra({'day': "date(created_at)"}) \
+            .annotate(day=TruncDate('created_at')) \
             .values('day') \
             .annotate(average_sentiment=Avg('sentiment_score'), count=Count('id'))
     elif time_frame == 'hour':
         aggregation = Sentiment.objects.filter(token__symbol=token_symbol) \
-            .extra({'hour': "strftime('%Y-%m-%d %H:00:00', created_at)"}) \
+            .annotate(hour=TruncHour('created_at')) \
             .values('hour') \
             .annotate(average_sentiment=Avg('sentiment_score'), count=Count('id'))
 

@@ -31,7 +31,7 @@ class Command(BaseCommand):
 
                 for item in data:
                     token, created = Token.objects.update_or_create(
-                        symbol=item['symbol'].upper(),
+                        symbol=item['symbol'],
                         defaults={
                             'name': item['name'],
                             'market_cap': item['market_cap'],

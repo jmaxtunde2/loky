@@ -1,51 +1,63 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<div class="Container">
-    <!-- Search for crypto currencies BTC, ADA, the search should be responsie by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
+<div class="container">
+    <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
     <form>
         <div class="form-row align-items-center">
-        <div class="col-auto">
-            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="search for Cryptocurrencies">
-        </div>
-        
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-2"> {% bs_icon 'search' size='1.2em' %} Search</button>
-        </div>
+            <div class="col-auto">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
+                </div>
+                <ul id="suggestions" class="list-group"></ul>
+            </div>
         </div>
     </form>
     <!-- TAB THAT LIST DIFFERENT SENTIMENT ANALYSIS  -->
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Sentiment Analysis</a></li>
-        <li><a data-toggle="tab" href="#menu1">Sentiment Trends Chart </a></li>
-        <li><a data-toggle="tab" href="#menu2">Aggregated Sentiment Data</a></li>
-      </ul>
-      
-      <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-          <h1>Sentiment Analysis for {{ token.name }} ({{ token.symbol }})</h1>
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#home">Sentiment Analysis</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu1">Sentiment Trends Chart</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Aggregated Sentiment Data</a>
+        </li>
+    </ul>
+    
+    <div class="tab-content mt-4">
+        <div id="home" class="tab-pane fade show active">
+            <h1 class="mt-3">Sentiment Analysis for {{ token.name }} ({{ token.symbol }})</h1>
             <img src="{{ sentiment_plot }}" alt="Sentiment Plot" style="width: 100%; height: auto;"/>
-            <ul>
+            <div class="row">
                 {% for sentiment in sentiments %}
-                    <li>
-                        <p>{{ sentiment.text }}</p>
-                        <p>Sentiment Score: {{ sentiment.sentiment_score }}</p>
-                        <p>Source: {{ sentiment.source }}</p>
-                        <p>Date: {{ sentiment.date }}</p>
-                    </li>
+                
+                <div class="col-4 card m-2" style="width: 18rem;">
+                <div class="card-header">
+                {{ sentiment.text }}
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Sentiment Score: {{ sentiment.sentiment_score }}</li>
+                <li class="list-group-item">Source: {{ sentiment.source }}</li>
+                <li class="list-group-item">Date: {{ sentiment.date }}</li>
+                </ul>
+                </div>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <div id="menu1" class="tab-pane fade">
             <h1>Sentiment Trend Chart for {{ token.name }} ({{ token.symbol }}) Per Hour</h1>
             <p><img src="data:image/png;base64,{{ chart_hour }}" alt="Sentiment Trend Chart"></p>
             <h1>Sentiment Trend Chart for {{ token.name }} ({{ token.symbol }}) Per Day</h1>
             <img src="data:image/png;base64,{{ chart }}" alt="Sentiment Trend Chart">
-            
         </div>
         <div id="menu2" class="tab-pane fade">
             <h1>Aggregated Sentiment Data for {{ token.name }} ({{ token.symbol }})</h1>
-            <table border="1">
+            <table border="1" class="table">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -56,15 +68,20 @@
                 <tbody>
                     {% for entry in aggregation %}
                         <tr>
-                            <td>{{ entry.day if entry.day else entry.hour }}</td>
+                            <td>
+                                {% if entry.day %}
+                                    {{ entry.day }}
+                                {% else %}
+                                    {{ entry.hour }}
+                                {% endif %}
+                            </td>
                             <td>{{ entry.average_sentiment }}</td>
                             <td>{{ entry.count }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <a data-toggle="tab" href="#menu2">View Sentiment Trend Chart</a>
         </div>
-      </div>
+    </div>
 </div>
-{% endblock content%}
+{% endblock content %}

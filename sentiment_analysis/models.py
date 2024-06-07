@@ -10,6 +10,8 @@ class Token(models.Model):
     circulating_supply = models.DecimalField(max_digits=20, decimal_places=2)
     max_supply = models.DecimalField(max_digits=20, decimal_places=2)
     logo = models.URLField(max_length=200, blank=True, null=True)  # Add the logo field
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.name} ({self.symbol})'
@@ -21,6 +23,8 @@ class Sentiment(models.Model):
     sentiment_score = models.FloatField()
     source = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return f'Sentiment for {self.token.name} from {self.source}'

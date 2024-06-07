@@ -13,3 +13,14 @@
 .top-space{
     margin-top: 10px;
 }
+/* live token search suggestion */
+.suggestion-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.suggestion-link:hover {
+    text-decoration: none;
+    color: #007bff; 
+}
+
