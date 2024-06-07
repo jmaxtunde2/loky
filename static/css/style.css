@@ -1,0 +1,15 @@
+/* Sidebar */
+.list-group-item {
+    background-color: white; 
+    color: black;
+    transition: background-color 0.3s ease;
+}
+.list-group-item:hover {
+    background-color: #343a40;
+    color:white;
+}
+
+/* top space*/
+.top-space{
+    margin-top: 10px;
+}

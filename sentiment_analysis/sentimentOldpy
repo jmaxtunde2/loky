@@ -1,0 +1,96 @@
+import requests
+from bs4 import BeautifulSoup
+from textblob import TextBlob
+from .models import Token, Sentiment
+from tenacity import retry, stop_after_attempt, wait_fixed
+
+def fetch_tweets(symbol, count=100):
+    url = f"https://twitter.com/search?q={symbol}&src=typed_query"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    tweets = [p.text for p in soup.find_all('p', {'class': 'tweet-text'})][:count]
+    return tweets
+
+@retry(stop=stop_after_attempt(5), wait=wait_fixed(2))
+def fetch_tweets_with_retry(token_symbol):
+    return fetch_tweets(token_symbol)
+
+def fetch_discord_messages(symbol):
+    # Implement the logic to scrape Discord messages
+    return []
+
+def fetch_binance_posts(symbol):
+    url = f"https://www.binance.com/en/blog"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    posts = [post.text for post in soup.find_all('div', {'class': 'css-1wjnrbv'}) if symbol in post.text]
+    return posts
+
+def fetch_news_articles(symbol, source_url):
+    response = requests.get(source_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    articles = [article.text for article in soup.find_all('article')]
+    return articles
+
+def analyze_sentiment(text):
+    analysis = TextBlob(text)
+    return analysis.sentiment.polarity
+
+def save_sentiments(token_symbol):
+    try:
+        token = Token.objects.get(symbol=token_symbol)
+    except Token.DoesNotExist:
+        print(f"Token {token_symbol} does not exist in the database.")
+        return
+
+    sources = {
+        'Twitter': fetch_tweets_with_retry,
+        'Binance': fetch_binance_posts,
+        'CoinDesk': lambda symbol: fetch_news_articles(symbol, 'https://www.coindesk.com/'),
+        'CoinTelegraph': lambda symbol: fetch_news_articles(symbol, 'https://cointelegraph.com/'),
+        'CryptoNews': lambda symbol: fetch_news_articles(symbol, 'https://cryptonews.com/'),
+        'Bitcoin.com': lambda symbol: fetch_news_articles(symbol, 'https://news.bitcoin.com/'),
+        'CoinMarketCap': lambda symbol: fetch_news_articles(symbol, 'https://coinmarketcap.com/headlines/news/'),
+        'CryptoDaily': lambda symbol: fetch_news_articles(symbol, 'https://cryptodaily.co.uk/'),
+        'CoinGecko': lambda symbol: fetch_news_articles(symbol, f'https://www.coingecko.com/en/coins/{symbol.lower()}')
+    }
+
+    for source, fetch_function in sources.items():
+        try:
+            messages = fetch_function(token_symbol)
+            for message in messages:
+                sentiment_score = analyze_sentiment(message)
+                Sentiment.objects.create(
+                    token=token,
+                    text=message,
+                    sentiment_score=sentiment_score,
+                    source=source
+                )
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching data from {source} for token {token_symbol}: {e}")
+
+def save_sentimentsOld(token_symbol):
+    token = Token.objects.get(symbol=token_symbol)
+    sources = {
+        'Twitter': fetch_tweets_with_retry,
+        #'Discord': fetch_discord_messages,
+        'Binance': fetch_binance_posts,
+        #'CoinDesk': lambda symbol: fetch_news_articles(symbol, 'https://www.coindesk.com/'),
+        #'CoinTelegraph': lambda symbol: fetch_news_articles(symbol, 'https://cointelegraph.com/'),
+        #'CryptoNews': lambda symbol: fetch_news_articles(symbol, 'https://cryptonews.com/'),
+        #'Bitcoin.com': lambda symbol: fetch_news_articles(symbol, 'https://news.bitcoin.com/'),
+        'CoinMarketCap': lambda symbol: fetch_news_articles(symbol, 'https://coinmarketcap.com/headlines/news/'),
+        #'CryptoDaily': lambda symbol: fetch_news_articles(symbol, 'https://cryptodaily.co.uk/'),
+        'CoinGecko': lambda symbol: fetch_news_articles(symbol, f'https://www.coingecko.com/en/coins/{symbol.lower()}')
+    }
+
+    for source, fetch_function in sources.items():
+        messages = fetch_function(token_symbol)
+        for message in messages:
+            sentiment_score = analyze_sentiment(message)
+            Sentiment.objects.create(
+                token=token,
+                text=message,
+                sentiment_score=sentiment_score,
+                source=source
+            )
