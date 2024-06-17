@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Token Analysis{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1>Token Analysis</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row align-items-center">
+                <textarea name="document" rows="10" class="form-control" cols="50"></textarea><br>
+                <select name="aspect" class="form-control">
+                    <option value="whitepaper">Whitepaper</option>
+                    <option value="team">Team Background</option>
+                    <option value="technology">Technology</option>
+                    <option value="partnerships">Partnerships</option>
+                    <option value="roadmap">Roadmap</option>
+                </select><br>
+                <button type="submit">Analyze</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+
+

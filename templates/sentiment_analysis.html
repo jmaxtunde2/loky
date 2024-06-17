@@ -8,9 +8,9 @@
             <div class="col-auto">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+                        <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
                     </div>
-                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
+                    <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
                 </div>
                 <ul id="suggestions" class="list-group"></ul>
             </div>
@@ -19,19 +19,27 @@
     <!-- TAB THAT LIST DIFFERENT SENTIMENT ANALYSIS  -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#home">Sentiment Analysis</a>
+            <a class="nav-link active textLoky" data-bs-toggle="tab" href="#home">Sentiment Analysis</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu1">Sentiment Trends Chart</a>
+            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu1">Sentiment Trends Chart</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Aggregated Sentiment Data</a>
+            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu2">Aggregated Sentiment Data</a>
         </li>
     </ul>
     
     <div class="tab-content mt-4">
         <div id="home" class="tab-pane fade show active">
-            <h1 class="mt-3">Sentiment Analysis for {{ token.name }} ({{ token.symbol }})</h1>
+            <h1 class="mt-3">Sentiment Analysis for {{ token.name }} ({{ token.symbol }})
+                 <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    ?
+                </button>
+            </h1>
+           
+  
+  
             <img src="{{ sentiment_plot }}" alt="Sentiment Plot" style="width: 100%; height: auto;"/>
             <div class="row">
                 {% for sentiment in sentiments %}
@@ -83,5 +91,62 @@
             </table>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">What is Sentiment Analysis</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b>Sentiment analysis</b> is a powerful tool that uses advanced algorithms to determine the emotional tone behind a body of text. 
+                    <b>In the context of cryptocurrency, </b>it involves analyzing the opinions and emotions expressed 
+                    in various sources such as news articles, social media posts, and forum discussions about a particular cryptocurrency or the market as a whole.
+                </p>
+                <p>
+                    Imagine you are considering investing in a cryptocurrency✨, and you use Loky sentiment analysis 🔥 to scan recent social media posts and news articles. 
+                    If the analysis shows a high percentage of positive sentiments, you might feel more confident in your investment decision 😀. Conversely, if the 
+                    sentiment is overwhelmingly negative 🥵, you might choose to investigate further or reconsider your decision. <br/>
+                </p>
+                <p>
+                    In summary, Loky sentiment analysis provides valuable insights that can enhance your trading strategy, helping you to stay ahead in the fast-paced world of cryptocurrency 
+                    trading.
+                </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#inlineFormInputGroup').on('keyup', function() {
+            var query = $(this).val();
+            if (query) {
+                $.ajax({
+                    url: '{% url "token_search" %}',
+                    data: {
+                        'query': query
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#suggestions').empty();
+                        $.each(data, function(key, value) {
+                            var link = '{% url "sentiment_analysis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
+                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
+                        });
+                    },
+                });
+            } else {
+                $('#suggestions').empty();
+            }
+        });
+    });
+    </script>
+{% endblock scripts %}

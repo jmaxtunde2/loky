@@ -1,0 +1,35 @@
+from django.db import models
+
+class TokenAnalysis(models.Model):
+    id = models.CharField(max_length=255, primary_key=True)
+    name = models.CharField(max_length=255)
+    symbol = models.CharField(max_length=50)
+    platform = models.CharField(max_length=255, null=True, blank=True)
+    blocktime = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
+    whitepaper = models.URLField(null=True, blank=True)
+    official_forum = models.URLField(null=True, blank=True)
+    announcement = models.URLField(null=True, blank=True)
+    twitter = models.URLField(null=True, blank=True)
+    telegram = models.URLField(null=True, blank=True)
+    reddit = models.URLField(null=True, blank=True)
+    sentiment_votes_up = models.IntegerField(null=True, blank=True)
+    sentiment_votes_down = models.IntegerField(null=True, blank=True)
+    facebook_likes = models.IntegerField(null=True, blank=True)
+    twitter_followers = models.IntegerField(null=True, blank=True)
+    reddit_subscribers = models.IntegerField(null=True, blank=True)
+    telegram_channel = models.CharField(max_length=255, null=True, blank=True)
+    forks = models.IntegerField(null=True, blank=True)
+    stars = models.IntegerField(null=True, blank=True)
+    subscribers = models.IntegerField(null=True, blank=True)
+    total_issues = models.IntegerField(null=True, blank=True)
+    market_cap = models.BigIntegerField(null=True, blank=True)
+    price = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    volume_24h = models.BigIntegerField(null=True, blank=True)
+    circulating_supply = models.BigIntegerField(null=True, blank=True)
+    max_supply = models.BigIntegerField(null=True, blank=True)
+    logo = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.symbol

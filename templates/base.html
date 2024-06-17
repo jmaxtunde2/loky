@@ -45,7 +45,7 @@
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2 " type="search" placeholder="Search Crypto Coin" aria-label="Search">
-              <button class="btn btn-outline-success me-2" type="submit"> <i class="fas fa-search"></i></button>
+              <button class="btn backgroundLoky me-2" type="submit"> <i class="fas fa-search"></i></button>
             </form>
             {% if user.is_authenticated %}
                 <ul class="navbar-nav ml-auto">
@@ -75,56 +75,51 @@
         </div>
     </nav>
     <div class="container-fluid" style="margin-top: 90px">
-        <div class="row flex-nowrap">
-            <div class="col-auto px-0">
-                <div id="sidebar" class="collapse collapse-horizontal show border-end">
-                    <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
-                        <a href="{% url 'home' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fas fa-house"></i>  <span>Home</span> </a>
-                        <a href="{% url 'sentiment_analysis' 'BTC' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar">  <i class="fa-solid fa-gauge-high"></i> <span>Sentiment Analysis</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fas fa-dollar"></i>  <span>Price Prediction</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fa-brands fa-bitcoin"></i>   <span>Token Analysis</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar">  <i class="fas fa-database"></i>  <span>Fraud Detection</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fas fa-wallet"></i>  <span>Portofolio Optimization</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fa-solid fa-screwdriver-wrench"></i>  <span>Risk Assessment</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold" data-bs-parent="#sidebar"> <i class="fas fa-camera"></i>  <span>Campaign</span></a>
-                        <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold ext-decoration-none" data-bs-parent="#sidebar"> <i class="fas fa-calendar"></i>  <span>Advertissment</span></a>
-                    </div>
-                </div>
+      <div class="row flex-nowrap">
+        <div class="col-auto px-0">
+          <div id="sidebar" class="collapse collapse-horizontal show border-end">
+            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+              <a href="{% url 'home' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'home' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-house"></i> <span>Home</span>
+              </a>
+              <a href="{% url 'sentiment_analysis' 'BTC' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'sentiment_analysis' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-solid fa-gauge-high"></i> <span>Sentiment Analysis</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'price_prediction' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-dollar"></i> <span>Price Prediction</span>
+              </a>
+              <a href="{% url 'token_analyis' 'arth' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'analyze_token' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-brands fa-bitcoin"></i> <span>Token Analysis</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'fraud_detection' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-database"></i> <span>Fraud Detection</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'portfolio_optimization' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-wallet"></i> <span>Portofolio Optimization</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'risk_assessment' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-solid fa-screwdriver-wrench"></i> <span>Risk Assessment</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'campaign' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-camera"></i> <span>Campaign</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'advertisement' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-calendar"></i> <span>Advertissment</span>
+              </a>
             </div>
-            <main class="col ps-md-2 pt-2">
-                <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none mb-2"> <i class="fas fa-list"></i>  Menu</a>
-                {%block content%}
-                {%endblock content%}
-            </main>
+          </div>
         </div>
-    </div>
+        <main class="col ps-md-2 pt-2">
+          <a href="#" id="menuButton" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-2 text-decoration-none mb-2 backgroundLoky"> 
+            <i class="fas fa-list" style="padding-top:10px;"></i> <span>Menu</span>
+          </a>
+          {% block content %}
+          {% endblock content %}
+        </main>
+      </div>
     <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script>
-      $(document).ready(function() {
-          $('#inlineFormInputGroup').on('keyup', function() {
-              var query = $(this).val();
-              if (query) {
-                  $.ajax({
-                      url: '{% url "token_search" %}',
-                      data: {
-                          'query': query
-                      },
-                      dataType: 'json',
-                      success: function(data) {
-                          $('#suggestions').empty();
-                          $.each(data, function(key, value) {
-                              var link = '{% url "sentiment_analysis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
-                              $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
-                          });
-                      },
-                  });
-              } else {
-                  $('#suggestions').empty();
-              }
-          });
-      });
-      </script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>    
+    <script src="{% static 'js/custom.js' %}"></script>
     {% block scripts %}
     {% endblock scripts %}
    </body>

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "pages.apps.PagesConfig",
     "tailwind",
-    "django_bootstrap_icons"
+    "django_bootstrap_icons",
+    "token_analysis.apps.TokenAnalysisConfig"
 ]
 
 MIDDLEWARE = [

@@ -4,8 +4,14 @@
     color: black;
     transition: background-color 0.3s ease;
 }
+.list-group-item-dt{
+    background-color: white; 
+    color: black;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
 .list-group-item:hover {
-    background-color: #343a40;
+    background-color: #FB9759;
     color:white;
 }
 
@@ -24,3 +30,27 @@
     color: #007bff; 
 }
 
+.backgroundLoky{
+    background-color: #FB9759;
+    color:white;   
+    border: #FB9759;
+}
+
+.backgroundLoky:hover{
+    transition: background-color 0.3s ease;
+    background-color: black;
+    color:white;   
+}
+.textLoky{
+    color: #FB9759;
+}
+
+.textLoky:hover{
+    color: black;
+}
+
+.nav-link.active {
+    background-color: #FB9759;
+    color: white;
+    border-radius: 10px;
+}
