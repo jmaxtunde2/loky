@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %} Anomaly Detection List {% endblock title %}
+{% block content %}
+    <h1>Anomalies</h1>
+    {% for image in images %}
+        <h2><a href="{% url 'anomaly_detail' image|cut:'anomaly/anomalies_'|cut:'.png' %}">{{ image|cut:'anomaly/anomalies_'|cut:'.png' }}</a></h2>
+        <img src="{% static image %}" alt="{{ image }}">
+    {% endfor %}
+{% endblock content %}

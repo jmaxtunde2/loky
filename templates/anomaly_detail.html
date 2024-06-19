@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %} Anomaly for {{ crypto_id }} {% endblock title %}
+{% block content %}
+    <h1>Anomaly for {{ crypto_id }}</h1>
+    <img src="{% static image %}" alt="Anomaly for {{ crypto_id }}">
+    <p><a href="{% url 'anomaly_list' %}">Back to Anomaly List</a></p>
+{% endblock content %}
