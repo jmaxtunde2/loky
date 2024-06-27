@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     "pages.apps.PagesConfig",
     "tailwind",
     "django_bootstrap_icons",
-    "token_analysis.apps.TokenAnalysisConfig"
+    "token_analysis.apps.TokenAnalysisConfig",
+    "anomaly_detection.apps.AnomalyDetectionConfig"
+
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "lucky_project.urls"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # or another path where you want to collect static files
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEMPLATES = [
     {

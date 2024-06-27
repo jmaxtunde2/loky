@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Advertise with LOKY{% endblock title %}
+{% block content %}
+<div class="container my-5">
+    <div class="text-center">
+        <h1>Advertise with LOKY</h1>
+        <p>Reach a wide audience of cryptocurrency enthusiasts and traders by advertising on our platform.</p>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <form method="POST" action="{% url 'advertise' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="companyName" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" id="companyName" name="company_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contactName" class="form-label">Contact Name</label>
+                    <input type="text" class="form-control" id="contactName" name="contact_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contactEmail" class="form-label">Contact Email</label>
+                    <input type="email" class="form-control" id="contactEmail" name="contact_email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="website" class="form-label">Company Website</label>
+                    <input type="url" class="form-control" id="website" name="website">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

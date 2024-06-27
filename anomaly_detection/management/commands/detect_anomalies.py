@@ -1,5 +1,3 @@
-# anomaly_detection/management/commands/detect_anomalies.py
-
 import requests
 import pandas as pd
 import time
@@ -7,7 +5,8 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
 from django.core.management.base import BaseCommand
-from anomaly_detection.models import Anomaly
+from django.utils import timezone
+from anomaly_detection.models import Anomaly, RiskAssessment
 
 class Command(BaseCommand):
     help = 'Detect anomalies in cryptocurrency data'
@@ -16,26 +15,33 @@ class Command(BaseCommand):
         url = f'https://api.coingecko.com/api/v3/coins/{crypto_id}/market_chart'
         params = {
             'vs_currency': 'usd',
-            'days': 'max',
+            'days': 365, #max
             'interval': 'daily'
         }
 
         response = requests.get(url, params=params)
         data = response.json()
+
+        # Debugging: Print the keys in the response
+        print(f"Response keys for {crypto_id}: {data.keys()}")
+
+        if 'prices' not in data or 'total_volumes' not in data:
+            raise ValueError(f"Missing expected keys in API response for {crypto_id}")
+
         prices = pd.DataFrame(data['prices'], columns=['timestamp', 'price'])
         volumes = pd.DataFrame(data['total_volumes'], columns=['timestamp', 'volume'])
         return pd.merge(prices, volumes, on='timestamp')
 
     def preprocess_data(self, data):
         data['timestamp'] = pd.to_datetime(data['timestamp'], unit='ms')
+        data['timestamp'] = data['timestamp'].apply(lambda x: timezone.make_aware(x, timezone.get_current_timezone()))
         data.set_index('timestamp', inplace=True)
         return data
 
     def detect_anomalies(self, data):
-        # Adjust contamination rate as needed
-        model = IsolationForest(contamination=0.01)  
+        model = IsolationForest(contamination=0.01)
         data['anomaly'] = model.fit_predict(data[['price', 'volume']])
-        data['anomaly'] = data['anomaly'].map({1: 0, -1: 1})  # Convert to binary
+        data['anomaly'] = data['anomaly'].map({1: 0, -1: 1})
         return data
 
     def plot_anomalies(self, data, crypto_id):
@@ -85,3 +91,5 @@ class Command(BaseCommand):
             except requests.exceptions.RequestException as e:
                 self.stderr.write(f'Error fetching data for {crypto_id}: {e}')
                 time.sleep(10)  # Wait before retrying
+            except ValueError as ve:
+                self.stderr.write(f'Error processing data for {crypto_id}: {ve}')

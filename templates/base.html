@@ -22,13 +22,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto d-flex  mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active fs-4" aria-current="page" href="#">About</a>
+                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'about' %}active{% endif %}" aria-current="page" href="{% url 'about' %}">About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link fs-4" href="#">API</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fs-4" href="#">Donate</a>
+                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'donate' %}active{% endif %}" aria-current="page" href="{% url 'donate' %}">Donate</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,13 +91,13 @@
               <a href="{% url 'token_analyis' 'arth' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'analyze_token' %}active{% endif %}" data-bs-parent="#sidebar">
                 <i class="fa-brands fa-bitcoin"></i> <span>Token Analysis</span>
               </a>
-              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'fraud_detection' %}active{% endif %}" data-bs-parent="#sidebar">
+              <a href="{% url 'anomaly_list' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'anomaly_list' %}active{% endif %}" data-bs-parent="#sidebar">
                 <i class="fas fa-database"></i> <span>Fraud Detection</span>
               </a>
               <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'portfolio_optimization' %}active{% endif %}" data-bs-parent="#sidebar">
                 <i class="fas fa-wallet"></i> <span>Portofolio Optimization</span>
               </a>
-              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'risk_assessment' %}active{% endif %}" data-bs-parent="#sidebar">
+              <a href="{% url 'risk_assessment' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'risk_assessment' %}active{% endif %}" data-bs-parent="#sidebar">
                 <i class="fa-solid fa-screwdriver-wrench"></i> <span>Risk Assessment</span>
               </a>
               <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'campaign' %}active{% endif %}" data-bs-parent="#sidebar">

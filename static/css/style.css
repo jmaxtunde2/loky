@@ -36,6 +36,7 @@
     border: #FB9759;
 }
 
+
 .backgroundLoky:hover{
     transition: background-color 0.3s ease;
     background-color: black;
@@ -54,3 +55,51 @@
     color: white;
     border-radius: 10px;
 }
+
+.anomaly-highlight {
+    color: red;
+    font-weight: bold;
+}
+
+.backgroundLokyhp {
+    background-color: #FB9759;
+    color:white;   
+    border: #FB9759;
+    padding: 50px 0;
+}
+
+
+.backgroundLokyhpbtn {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.section-bg {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.icon-box h4 a {
+    color: #007bff;
+}
+
+.icon-box p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+
+code {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
