@@ -1,0 +1,6 @@
+<!-- login.html -->
+<form method="post" id="loginForm" action="{% url 'login_view' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Log In</button>
+</form>

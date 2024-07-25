@@ -6,5 +6,5 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about-loky', AboutPageView.as_view(), name='about'),
     path('donate-loky', DonatePageView.as_view(), name='donate'),
-     path('advertise/', advertise, name='advertise'),
+    path('advertise/', advertise, name='advertise'),
 ]

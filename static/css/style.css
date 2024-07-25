@@ -103,3 +103,20 @@ code {
     border-radius: 5px;
 }
 
+/* Media query for mobile view */
+@media (max-width: 767.98px) {
+    #sidebar {
+        display: none;
+    }
+    #menuButton {
+        display: block;
+    }
+}
+@media (min-width: 768px) {
+    #sidebar {
+        display: block;
+    }
+    #menuButton {
+        display: none;
+    }
+} 

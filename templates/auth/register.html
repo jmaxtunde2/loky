@@ -1,0 +1,6 @@
+<!-- register.html -->
+<form method="post" id="registerForm" action="{% url 'register_view' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
