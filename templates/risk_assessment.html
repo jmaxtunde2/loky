@@ -34,7 +34,7 @@
         <tbody>
             {% for risk in risk_assessments %}
                 <tr>
-                    <td scope="row"><a href="{% url 'risk_assessment_detail' risk.crypto_id %}">{{ risk.crypto_id }}</a></td>
+                    <td scope="row"><a href="{% url 'risk_assessment_detail' risk.crypto_id %}"><span class="notranslate">{{ risk.crypto_id }} </span></a></td>
                     <td>{{ risk.volatility }}</td>
                     <td>{{ risk.liquidity }}</td>
                     <td>{{ risk.anomaly_count }}</td>

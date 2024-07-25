@@ -3,7 +3,7 @@
 {% block title %} Anomaly for {{ crypto_id }} {% endblock title %}
 {% block content %}
     <div class="container">
-        <h1>Anomalies for {{ anomalies.0.crypto_id }}</h1>
+        <h1>Anomalies for <span class="notranslate"> {{ anomalies.0.crypto_id }} </span></h1>
         {% if image %}
             <img src="{% static image %}" alt="Anomalies">
         {% endif %}

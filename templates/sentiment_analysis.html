@@ -31,7 +31,7 @@
     
     <div class="tab-content mt-4">
         <div id="home" class="tab-pane fade show active">
-            <h1 class="mt-3">Sentiment Analysis for {{ token.name }} ({{ token.symbol }})
+            <h1 class="mt-3">Sentiment Analysis for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span>
                  <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     ?
@@ -58,13 +58,13 @@
             </div>
         </div>
         <div id="menu1" class="tab-pane fade">
-            <h1>Sentiment Trend Chart for {{ token.name }} ({{ token.symbol }}) Per Hour</h1>
+            <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span> Per Hour</h1>
             <p><img src="data:image/png;base64,{{ chart_hour }}" alt="Sentiment Trend Chart"></p>
-            <h1>Sentiment Trend Chart for {{ token.name }} ({{ token.symbol }}) Per Day</h1>
+            <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span> Per Day</h1>
             <img src="data:image/png;base64,{{ chart }}" alt="Sentiment Trend Chart">
         </div>
         <div id="menu2" class="tab-pane fade">
-            <h1>Aggregated Sentiment Data for {{ token.name }} ({{ token.symbol }})</h1>
+            <h1>Aggregated Sentiment Data for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span></h1>
             <table border="1" class="table">
                 <thead>
                     <tr>
@@ -139,7 +139,7 @@
                         $('#suggestions').empty();
                         $.each(data, function(key, value) {
                             var link = '{% url "sentiment_analysis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
-                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
+                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link notranslate" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
                         });
                     },
                 });
