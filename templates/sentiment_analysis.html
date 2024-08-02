@@ -1,124 +1,154 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block content %}
-<div class="container">
-    <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
-    <form>
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Sentiment Analysis</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
                 </div>
-                <ul id="suggestions" class="list-group"></ul>
             </div>
-        </div>
-    </form>
-    <!-- TAB THAT LIST DIFFERENT SENTIMENT ANALYSIS  -->
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active textLoky" data-bs-toggle="tab" href="#home">Sentiment Analysis</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu1">Sentiment Trends Chart</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu2">Aggregated Sentiment Data</a>
-        </li>
-    </ul>
-    
-    <div class="tab-content mt-4">
-        <div id="home" class="tab-pane fade show active">
-            <h1 class="mt-3">Sentiment Analysis for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span>
-                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    ?
-                </button>
-            </h1>
-           
-  
-  
-            <img src="{{ sentiment_plot }}" alt="Sentiment Plot" style="width: 100%; height: auto;"/>
-            <div class="row">
-                {% for sentiment in sentiments %}
-                
-                <div class="col-4 card m-2" style="width: 18rem;">
-                <div class="card-header">
-                {{ sentiment.text }}
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Sentiment Score: {{ sentiment.sentiment_score }}</li>
-                    <li class="list-group-item">Source: {{ sentiment.source }}</li>
-                    <li class="list-group-item">Date: {{ sentiment.date }}</li>
-                </ul>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span> Per Hour</h1>
-            <p><img src="data:image/png;base64,{{ chart_hour }}" alt="Sentiment Trend Chart"></p>
-            <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span> Per Day</h1>
-            <img src="data:image/png;base64,{{ chart }}" alt="Sentiment Trend Chart">
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h1>Aggregated Sentiment Data for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span></h1>
-            <table border="1" class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Average Sentiment Score</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for entry in aggregation %}
-                        <tr>
-                            <td>
-                                {% if entry.day %}
-                                    {{ entry.day }}
-                                {% else %}
-                                    {{ entry.hour }}
-                                {% endif %}
-                            </td>
-                            <td>{{ entry.average_sentiment }}</td>
-                            <td>{{ entry.count }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">What is Sentiment Analysis</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt mailbox-hd">
+                        <div class="text-center p-xs font-normal">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="inlineFormInputGroup"  placeholder="Search for cryptocurrency..."> 
+                                <span class="input-group-btn active-hook"> 
+                                    <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-search"></span>Search </button>
+                                </span>
+                            </div>
+                            <ul id="suggestions" class="list-group"></ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="admintab-wrap edu-tab1 mg-t-20">
+                            <ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1">
+                                <li class="active"><a data-toggle="tab" href="#TabSentiment"><span class="edu-icon edu-analytics tab-custon-ic"></span>Sentiment Analysis</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#TabTrends"><span class="edu-icon edu-analytics-arrow tab-custon-ic"></span>Sentiment Trends Chart</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#TabAgregated"><span class="edu-icon edu-analytics-bridge tab-custon-ic"></span>Aggregated Sentiment Data</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="TabSentiment" class="tab-pane in active flipInX custon-tab-style1">
+                                    <h1 class="mt-3">Sentiment Analysis for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span>
+                                        <!-- Button trigger modal -->
+                                        <a class="mg-b-10 btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalhdbgcl" style="color: white;"> What is it?</a>
+                                   </h1>
+                         
+                                   <img src="{{ sentiment_plot }}" alt="Sentiment Plot" style="width: 100%; height: auto;"/>
+                                    <div class="row  scrollable-row">
+                                        {% for sentiment in sentiments %}
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="courses-inner res-mg-b-30" style="width: 18rem; min-height: 250px;">
+                                                    <div class="courses-title">
+                                                        <h2> {{ sentiment.text }}</h2>
+                                                    </div>
+                                                    <div class="course-des">
+                                                        <p><span><i class="fa fa-info-circle text-warning"></i></span> <b>Sentiment Score:</b> {{ sentiment.sentiment_score }}</p>
+                                                        <p><span><i class="fa fa-heart text-danger"></i></span> <b>Source:</b>  {{ sentiment.source }}</p>
+                                                        <p><span><i class="fa fa-calendar text-info"></i></span> <b>Date:</b> {{ sentiment.date }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                   </div>                                  
+                                </div>
+                                <div id="TabTrends" class="tab-pane flipInX custon-tab-style1">
+                                    <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }})</span> Per Hour</h1>
+                                    <p><img src="data:image/png;base64,{{ chart_hour }}" alt="Sentiment Trend Chart"></p>
+                                    <h1>Sentiment Trend Chart for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span> Per Day</h1>
+                                    <img src="data:image/png;base64,{{ chart }}" alt="Sentiment Trend Chart">
+                                </div>
+                                <div id="TabAgregated" class="tab-pane animated flipInX custon-tab-style1">
+                                    <h1>Aggregated Sentiment Data for <span class="notranslate"> {{ token.name }} ({{ token.symbol }}) </span></h1>
+                                    <table border="1" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Average Sentiment Score</th>
+                                                <th>Count</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for entry in aggregation %}
+                                                <tr>
+                                                    <td>
+                                                        {% if entry.day %}
+                                                            {{ entry.day }}
+                                                        {% else %}
+                                                            {{ entry.hour }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>{{ entry.average_sentiment }}</td>
+                                                    <td>{{ entry.count }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>
-                    <b>Sentiment analysis</b> is a powerful tool that uses advanced algorithms to determine the emotional tone behind a body of text. 
-                    <b>In the context of cryptocurrency, </b>it involves analyzing the opinions and emotions expressed 
-                    in various sources such as news articles, social media posts, and forum discussions about a particular cryptocurrency or the market as a whole.
-                </p>
-                <p>
-                    Imagine you are considering investing in a cryptocurrency✨, and you use Loky sentiment analysis 🔥 to scan recent social media posts and news articles. 
-                    If the analysis shows a high percentage of positive sentiments, you might feel more confident in your investment decision 😀. Conversely, if the 
-                    sentiment is overwhelmingly negative 🥵, you might choose to investigate further or reconsider your decision. <br/>
-                </p>
-                <p>
-                    In summary, Loky sentiment analysis provides valuable insights that can enhance your trading strategy, helping you to stay ahead in the fast-paced world of cryptocurrency 
-                    trading.
-                </p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
-            </div>
+            {% include 'advert_section.html' %}
         </div>
+    </div>
+    <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">What is Sentiment Analysis ?</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Sentiment analysis</b> is a powerful tool that uses advanced algorithms to determine the emotional tone behind a body of text. 
+                        <b>In the context of cryptocurrency, </b>it involves analyzing the opinions and emotions expressed 
+                        in various sources such as news articles, social media posts, and forum discussions about a particular cryptocurrency or the market as a whole.
+                    </p>
+                    <p>
+                        Imagine you are considering investing in a cryptocurrency✨, and you use Luckyai sentiment analysis 🔥 to scan recent social media posts and news articles. 
+                        If the analysis shows a high percentage of positive sentiments, you might feel more confident in your investment decision 😀. Conversely, if the 
+                        sentiment is overwhelmingly negative 🥵, you might choose to investigate further or reconsider your decision. <br/>
+                    </p>
+                    <p>
+                        In summary, Luckyai sentiment analysis provides valuable insights that can enhance your trading strategy, helping you to stay ahead in the fast-paced world of cryptocurrency 
+                        trading.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

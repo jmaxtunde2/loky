@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About LOKY{% endblock title %}
+{% block content %}
+<div class="container-fluid backgroundLokyhp mb-5">
+    <div class="row d-flex align-items-center">
+        <div class="col-lg-6 py-5 py-lg-0 order-2 order-lg-1 d-flex flex-column align-items-center" data-aos="fade-right">
+            <h1 style="font-size: 5em; text-align: center;">Introducing LOKY</h1>
+            <h3 style="font-size: 2em; text-align: center;">AI-powered platform for DYOR (Do Your Own Research). Your Gateway to Cryptocurrency Insights and Maximized Profits</h3>
+            <a href="#about" class="btn backgroundLokyhpbtn scrollto mt-3">Get Started</a>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+            <img src="{% static 'img/about.png' %}" class="img-fluid" alt="">
+        </div>
+    </div>
+</div>
+
+<section id="about" class="about section-bg mt-5">
+    <div class="container mt-5">
+        <div class="row gy-4">
+            <div class="image col-xl-5">
+                <img src="{% static 'img/introducingLoky.png' %}" class="img-fluid" alt="">
+                <a href="#features" class="btn backgroundLokyhpbtn scrollto mt-3 d-block text-center">Navigate To Features</a>
+            </div>
+            <div class="col-xl-7">
+                <div class="content d-flex flex-column justify-content-center ps-0 ps-xl-4">
+                    <h3 data-aos="fade-in" data-aos-delay="100" style="text-align: center;">Introducing LOKY: Your Gateway to Cryptocurrency Insights and Maximized Profits</h3>
+                    <div class="row gy-4 mt-3">
+                        <div class="col-md-6 icon-box" data-aos="fade-up">
+                            <i class="bx bx-receipt"></i>
+                            <h4><a href="#" style="color: #FB9759;">What is LOKY?</a></h4>
+                            <p>
+                                In the dynamic world of cryptocurrencies, staying ahead requires not just keen observation but also insightful analysis. 
+                                LOKY is here to bridge that gap, providing you with unparalleled mining insights to maximize your profits.
+                                <br/>
+                                LOKY is the name given to our AI agent, whose mission is to mine deep insights from vast amounts of data, 
+                                helping you make informed decisions and optimize your trading strategies. <br/> In short, 
+                                LOKY is a cutting-edge platform designed for cryptocurrency traders and enthusiasts. 
+                                 
+                            </p>
+                        </div>
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <i class="bx bx-cube-alt"></i>
+                            <h4><a href="#" style="color: #FB9759;">Why LOKY ?</a></h4>
+                            <p>The cryptocurrency market's complexity and volatility make it challenging for investors to stay informed and make sound decisions. There is a significant demand for intelligent tools that can analyze vast amounts of data and provide accurate insights. 
+                                Loky aims to fill this gap by offering a robust AI-powered platform for DYOR (Do Your Own Research) in the cryptocurrency space. The platform uses machine learning and AI algorithms to provide users with intelligent data-driven insights to make informed investment decisions. </p>
+                        </div>
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <i class="bx bx-images"></i>
+                            <h4><a href="#" style="color: #FB9759;">Motto</a></h4>
+                            <p><b> Mining Insights, Maximizing Profits</b> </p>
+                            <p> This motto highlights the platform's focus on providing valuable insights to cryptocurrency investors and traders, helping them make informed decisions and maximize their profits.                    </p>
+                        </div>
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                            <i class="bx bx-shield"></i>
+                            <h4><a href="#" style="color: #FB9759;">Vision Statement:</a></h4>
+                            <p>
+                                To become the leading AI-powered platform empowering cryptocurrency investors and traders with actionable insights, revolutionizing the way they navigate the dynamic crypto market.
+                            </p>
+                        </div>
+                    </div>
+                </div><!-- End .content-->
+            </div>
+        </div>
+    </div>
+</section><!-- End About Section -->
+
+<section id="features" class="features section-bg">
+    <div class="container">
+        <div class="section-title">
+            <h2 data-aos="fade-in" style="color: #FB9759;">Features</h2>
+            <p data-aos="fade-in">Leveraging advanced machine learning and AI algorithms, LOKY offers comprehensive sentiment analysis, price predictions, token analysis, anomalies detections, portfolio optimization and risk assessments for various cryptocurrencies. By aggregating data from multiple sources, including social media, news outlets, and market data, our platform provides users with real-time, actionable insights to make well-informed investment decisions.</p>
+        </div>
+        <div class="row content">
+            <div class="col-md-5" data-aos="fade-right">
+                <img src="{% static 'img/features-1.svg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-7 pt-4" data-aos="fade-left">
+                <ul>
+                    <li><h3>Sentiment Analysis:</h3> <i class="fa fa-check"></i> Real-time analysis of social media and news sentiment towards various cryptocurrencies.</li>
+                    <li><h3>Price Prediction:</h3> <i class="fa fa-check"></i> AI-driven predictions of cryptocurrency prices based on historical data and market trends.</li>
+                    <li><h3>Token analysis:</h3> <i class="fa fa-check"></i> Tools to analyze the fundamental aspects of a cryptocurrency project such as whitepapers, team backgrounds, technology, partnerships, and roadmap.</li>
+                    <li><h3>Anomalies detections:</h3> <i class="fa fa-check"></i> Tools to identify unusual patterns in trading volumes, price movements, or social media activity, which could indicate market manipulation or insider trading.</li>
+                    <li><h3>Risk Assessment:</h3> <i class="fa fa-check"></i> Comprehensive risk analysis of different cryptocurrencies, helping investors understand potential risks and rewards.</li>
+                    <li><h3>Portfolio Optimization:</h3> <i class="fa fa-check"></i> Tools to help users optimize their cryptocurrency portfolios based on risk tolerance and investment goals.</li>
+                    <li><h3>Real-Time Alerts:</h3> <i class="fa fa-check"></i> Notifications and alerts for significant market movements and news.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!-- End Features Section -->
+{% endblock content %}

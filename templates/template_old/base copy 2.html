@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Bootstrap CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
+        <title>{% block title %} LOKY {% endblock title %}</title>
+        
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold fs-1" href="{% url 'home' %}">
+            <img src="{% static 'img/logo.jpg' %}" alt="LOKY Logo" width="200" height="auto">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto d-flex  mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'about' %}active{% endif %}" aria-current="page" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-4" href="#">API</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'donate' %}active{% endif %}" aria-current="page" href="{% url 'donate' %}">Donate</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Community
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">FAQ</a></li>
+                  <li><a class="dropdown-item" href="#">Learn</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Forum</a></li>
+                </ul>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="margin-top: 90px">
+      <div class="row flex-nowrap">
+        <div class="col-auto px-0">
+          <div id="sidebar" class="collapse collapse-horizontal show border-end">
+            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+              <a href="{% url 'home' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'home' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-house"></i> <span>Home</span>
+              </a>
+              <a href="{% url 'sentiment_analysis' 'BTC' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'sentiment_analysis' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-solid fa-gauge-high"></i> <span>Sentiment Analysis</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'price_prediction' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-dollar"></i> <span>Price Prediction</span>
+              </a>
+              <a href="{% url 'token_analyis' 'arth' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'analyze_token' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-brands fa-bitcoin"></i> <span>Token Analysis</span>
+              </a>
+              <a href="{% url 'anomaly_list' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'anomaly_list' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-database"></i> <span>Fraud Detection</span>
+              </a>
+              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'portfolio_optimization' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-wallet"></i> <span>Portofolio Optimization</span>
+              </a>
+              <a href="{% url 'risk_assessment' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'risk_assessment' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fa-solid fa-screwdriver-wrench"></i> <span>Risk Assessment</span>
+              </a>
+              <!-- <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'campaign' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-camera"></i> <span>Campaign</span>
+              </a> -->
+              
+              <a href="{% url 'advertise' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'advertise' %}active{% endif %}" data-bs-parent="#sidebar">
+                <i class="fas fa-calendar"></i> <span>Advertissment</span>
+              </a>
+              <span class="mt-4 ml-4">Translate</span>
+              <div class="gtranslate_wrapper"></div>
+              <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","de","it","es","pt"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_open_direction":"top"}</script>
+              <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+            </div>
+          </div>
+        </div>
+        <main class="col ps-md-2 pt-2">
+         
+          <a href="#" id="menuButton" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-2 text-decoration-none mb-2 backgroundLoky"> 
+            <i class="fas fa-list" style="padding-top:10px;"></i> <span>Menu</span>
+        </a>
+          {% block content %}
+          {% endblock content %}
+        </main>
+      </div>
+      
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>    
+    <script src="{% static 'js/custom.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}
+   </body>
+</html>

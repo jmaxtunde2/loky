@@ -1,99 +1,131 @@
 {% extends 'base.html' %}
 {% block title %} Risk Assessment List {% endblock title %}
 {% block content %}
-<div class="container">
-     <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
-     <form>
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Risk Analysis</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
                 </div>
-                <ul id="suggestions" class="list-group"></ul>
             </div>
         </div>
-    </form>
-    <h1 class="mt-3">Risk Assessment
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            ?
-        </button>
-    </h1>
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Crypto ID</th>
-            <th scope="col">Volatility</th>
-            <th scope="col">Liquidity</th>
-            <th scope="col">Anomaly Count</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for risk in risk_assessments %}
-                <tr>
-                    <td scope="row"><a href="{% url 'risk_assessment_detail' risk.crypto_id %}"><span class="notranslate">{{ risk.crypto_id }} </span></a></td>
-                    <td>{{ risk.volatility }}</td>
-                    <td>{{ risk.liquidity }}</td>
-                    <td>{{ risk.anomaly_count }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-      </table>   
-</div>
- <!-- Modal -->
- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">What is Anomaly In cryptocurrency ?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <p>
-                <b>Risk assessment </b> in cryptocurrency trading involves evaluating the potential risks associated with different cryptocurrencies. This process helps traders and investors make informed decisions by understanding the volatility, liquidity, market capitalization, and regulatory risks of various digital assets.
-            </p>
-            <p>
-                <b>Why is Risk Assessment Important?</b>
-                <li>
-                    Volatility: Cryptocurrencies are known for their high volatility. Understanding the price fluctuations can help traders anticipate potential losses or gains.
-                </li>
-                <li>
-                    Liquidity: Liquidity refers to how easily a cryptocurrency can be bought or sold without affecting its price. Low liquidity can lead to difficulties in executing trades at desired prices.
-                </li>                                
-                <li>
-                    Market Capitalization: The market cap of a cryptocurrency indicates its overall value and market presence. Larger market cap generally suggests more stability.
-                </li>
-                <li>
-                    Regulatory Risks: Cryptocurrencies are subject to varying regulations across different countries. Awareness of regulatory changes can prevent legal issues and financial losses.
-                </li>
-            </p>
-            <p>
-               <b>Example of Risk Assessment</b>    <br/>
-               Suppose a trader is considering investing in two cryptocurrencies: CryptoA and CryptoB.
-
-                <ul>
-                    <li>CryptoA has a high market cap, is widely accepted, and has a history of moderate price fluctuations. It also has high liquidity, meaning it can be easily traded.</li>
-                    <li> CryptoB is a newer cryptocurrency with a low market cap, high price volatility, and low liquidity. Additionally, it is facing potential regulatory scrutiny in several countries.</li>
-                </ul>
-                Based on risk assessment, the trader might conclude:
-                <ul>
-                    <li>CryptoA is a lower-risk investment due to its stability, liquidity, and regulatory clarity.</li>
-                    <li> CryptoB is a higher-risk investment due to its volatility, liquidity issues, and regulatory uncertainty.</li>
-                </ul>
-                The trader can then decide whether to pursue a conservative strategy with CryptoA or a high-risk, high-reward strategy with CryptoB.            
-            </p>
-            
-            
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
-        </div>
-    </div>
     </div>
 </div>
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt mailbox-hd">
+                        <div class="text-center p-xs font-normal">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="inlineFormInputGroup"  placeholder="Search for cryptocurrency..."> 
+                                <span class="input-group-btn active-hook"> 
+                                    <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-search"></span>Search </button>
+                                </span>
+                            </div>
+                            <ul id="suggestions" class="list-group"></ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="admintab-wrap edu-tab1 mg-t-20">
+                            <h1 class="mt-3">Risk Assessment
+                                <!-- Button trigger modal -->
+                                <a class="mg-b-10 btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalhdbgcl" style="color: white;"> What is it?</a>
+                            </h1>
+                                        
+                            <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Crypto ID</th>
+                                    <th scope="col">Volatility</th>
+                                    <th scope="col">Liquidity</th>
+                                    <th scope="col">Anomaly Count</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for risk in risk_assessments %}
+                                        <tr>
+                                            <td scope="row"><a href="{% url 'risk_assessment_detail' risk.crypto_id %}"><span class="notranslate text-info">{{ risk.crypto_id }} </span></a></td>
+                                            <td>{{ risk.volatility }}</td>
+                                            <td>{{ risk.liquidity }}</td>
+                                            <td>{{ risk.anomaly_count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'advert_section.html' %}
+        </div>
+    </div>
+    <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">What is Anomaly In cryptocurrency ?</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Risk assessment </b> in cryptocurrency trading involves evaluating the potential risks associated with different cryptocurrencies. This process helps traders and investors make informed decisions by understanding the volatility, liquidity, market capitalization, and regulatory risks of various digital assets.
+                    </p>
+                    <p>
+                        <b>Why is Risk Assessment Important?</b>
+                        <li class="list-group-item">
+                            Volatility: Cryptocurrencies are known for their high volatility. Understanding the price fluctuations can help traders anticipate potential losses or gains.
+                        </li>
+                        <li class="list-group-item">
+                            Liquidity: Liquidity refers to how easily a cryptocurrency can be bought or sold without affecting its price. Low liquidity can lead to difficulties in executing trades at desired prices.
+                        </li>                                
+                        <li class="list-group-item">
+                            Market Capitalization: The market cap of a cryptocurrency indicates its overall value and market presence. Larger market cap generally suggests more stability.
+                        </li>
+                        <li class="list-group-item">
+                            Regulatory Risks: Cryptocurrencies are subject to varying regulations across different countries. Awareness of regulatory changes can prevent legal issues and financial losses.
+                        </li>
+                    </p>
+                    <p>
+                       <b>Example of Risk Assessment</b>    <br/>
+                       Suppose a trader is considering investing in two cryptocurrencies: CryptoA and CryptoB.
+        
+                        <ul>
+                            <li class="list-group-item">CryptoA has a high market cap, is widely accepted, and has a history of moderate price fluctuations. It also has high liquidity, meaning it can be easily traded.</li>
+                            <li class="list-group-item"> CryptoB is a newer cryptocurrency with a low market cap, high price volatility, and low liquidity. Additionally, it is facing potential regulatory scrutiny in several countries.</li>
+                        </ul>
+                        Based on risk assessment, the trader might conclude:
+                        <ul>
+                            <li class="list-group-item">CryptoA is a lower-risk investment due to its stability, liquidity, and regulatory clarity.</li>
+                            <li class="list-group-item"> CryptoB is a higher-risk investment due to its volatility, liquidity issues, and regulatory uncertainty.</li>
+                        </ul>
+                        The trader can then decide whether to pursue a conservative strategy with CryptoA or a high-risk, high-reward strategy with CryptoB.            
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}

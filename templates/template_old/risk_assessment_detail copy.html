@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Risk Assessment List {% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1>Risk Assessment for <span class="notranslate">{{ risk.crypto_id }} </span></h1>
+        {% if image %}
+            <img src="{% static image %}" alt="Risk Assessment">
+        {% endif %}
+        <p>Volatility: {{ risk.volatility }}</p>
+        <p>Liquidity: {{ risk.liquidity }}</p>
+        <p>Market Cap: {{ risk.market_cap }}</p>
+        <p>Regulatory Risks: {{ risk.regulatory_risks }}</p>
+    </div>    
+{% endblock content %}

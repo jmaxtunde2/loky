@@ -2,28 +2,66 @@
 {% load static %}
 {% block title %}Donate to LOKY{% endblock title %}
 {% block content %}
-<div class="container my-5">
-    <div class="text-center">
-        <h1>Support LOKY with Your Donations</h1>
-        <p>Your contributions help us keep the platform running and improve our services.</p>
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-md-4 text-center">
-            <h3 class="notranslate">Bitcoin (BTC)</h3>
-            <p>Wallet Address: <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code></p>
-            <img src="{% static 'img/bitcoin_qr.png' %}" alt="Bitcoin QR Code" class="img-fluid">
-        </div>
-        <div class="col-md-4 text-center">
-            <h3 class="notranslate">Ethereum (ETH)</h3>
-            <p>Wallet Address: <code>0x32Be343B94f860124dC4fEe278FDCBD38C102D88</code></p>
-            <img src="{% static 'img/ethereum_qr.png' %}" alt="Ethereum QR Code" class="img-fluid">
-        </div>
-        <div class="col-md-4 text-center">
-            <h3 class="notranslate">Litecoin (LTC)</h3>
-            <p>Wallet Address: <code>LLv4VLN5vE9wv1io4MTsEJbgh2X9VxyNQX</code></p>
-            <img src="{% static 'img/litecoin_qr.png' %}" alt="Litecoin QR Code" class="img-fluid">
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Donate To Support Luckyai Developments</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h1>Support LOKY with Your Donations</h1>
+                            <p>Your contributions help us keep the platform running and improve our services.</p>
+                        </div>
+                    
+                        <div class="row mt-5">
+                            <div class="col-md-4 text-center">
+                                <h3 class="notranslate">Bitcoin (BTC)</h3>
+                                <p>Wallet Address: <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code></p>
+                                <img src="{% static 'img/bitcoin_qr.png' %}" alt="Bitcoin QR Code" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="notranslate">Ethereum (ETH)</h3>
+                                <p>Wallet Address: <code>0x32Be343B94f860124dC4fEe278FDCBD38C102D88</code></p>
+                                <img src="{% static 'img/ethereum_qr.png' %}" alt="Ethereum QR Code" class="img-fluid">
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <h3 class="notranslate">Litecoin (LTC)</h3>
+                                <p>Wallet Address: <code>LLv4VLN5vE9wv1io4MTsEJbgh2X9VxyNQX</code></p>
+                                <img src="{% static 'img/litecoin_qr.png' %}" alt="Litecoin QR Code" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            {% include 'advert_section.html' %}
+        </div>
+    </div>
+</div>    
 {% endblock content %}

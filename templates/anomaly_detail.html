@@ -2,18 +2,57 @@
 {% load static %}
 {% block title %} Anomaly for {{ crypto_id }} {% endblock title %}
 {% block content %}
-    <div class="container">
-        <h1>Anomalies for <span class="notranslate"> {{ anomalies.0.crypto_id }} </span></h1>
-        {% if image %}
-            <img src="{% static image %}" alt="Anomalies">
-        {% endif %}
-        <ul>
-            {% for anomaly in anomalies %}
-                <li{% if anomaly.is_anomaly %} class="anomaly-highlight"{% endif %}>
-                    {{ anomaly.timestamp }}: {{ anomaly.price }} (Volume: {{ anomaly.volume }}) - {{ anomaly.is_anomaly|yesno:"Anomaly,Normal" }}
-                </li>
-            {% endfor %}
-        </ul>
+    <!-- tabs start-->
+    <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcome-heading">
+                                    <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <ul class="breadcome-menu">
+                                    <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                    </li>
+                                    <li><span class="bread-blod">Anomaly Details</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+    <div class="admintab-area mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="hpanel">
+                        <div class="panel-body">
+                            <div class="admintab-wrap edu-tab1 mg-t-10 scrollable-row-a">
+                                <h1>Anomalies for <span class="notranslate"> {{ anomalies.0.crypto_id }} </span></h1>
+                                {% if image %}
+                                    <img src="{% static image %}" alt="Anomalies">
+                                {% endif %}
+                                <ul>
+                                    {% for anomaly in anomalies %}
+                                        <li{% if anomaly.is_anomaly %} class="anomaly-highlight list-group-item" {% else%} class="list-group-item" {% endif %}>
+                                            {{ anomaly.timestamp }}: {{ anomaly.price }} (Volume: {{ anomaly.volume }}) - {{ anomaly.is_anomaly|yesno:"Anomaly,Normal" }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                {% include 'advert_section.html' %}
+            </div>
+        </div>
+    </div>    
 {% endblock content %}

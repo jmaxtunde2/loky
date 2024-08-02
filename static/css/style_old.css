@@ -1,0 +1,122 @@
+/* Sidebar */
+.list-group-item {
+    background-color: white; 
+    color: black;
+    transition: background-color 0.3s ease;
+}
+.list-group-item-dt{
+    background-color: white; 
+    color: black;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+.list-group-item:hover {
+    background-color: #FB9759;
+    color:white;
+}
+
+/* top space*/
+.top-space{
+    margin-top: 10px;
+}
+/* live token search suggestion */
+.suggestion-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.suggestion-link:hover {
+    text-decoration: none;
+    color: #007bff; 
+}
+
+.backgroundLoky{
+    background-color: #FB9759;
+    color:white;   
+    border: #FB9759;
+}
+
+
+.backgroundLoky:hover{
+    transition: background-color 0.3s ease;
+    background-color: black;
+    color:white;   
+}
+.textLoky{
+    color: #FB9759;
+}
+
+.textLoky:hover{
+    color: black;
+}
+
+.nav-link.active {
+    background-color: #FB9759;
+    color: white;
+    border-radius: 10px;
+}
+
+.anomaly-highlight {
+    color: red;
+    font-weight: bold;
+}
+
+.backgroundLokyhp {
+    background-color: #FB9759;
+    color:white;   
+    border: #FB9759;
+    padding: 50px 0;
+} 
+
+
+.backgroundLokyhpbtn {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.section-bg {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.icon-box h4 a {
+    color: #007bff;
+}
+
+.icon-box p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+
+code {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Media query for mobile view */
+@media (max-width: 767.98px) {
+    #sidebar {
+        display: none;
+    }
+    #menuButton {
+        display: block;
+    }
+}
+@media (min-width: 768px) {
+    #sidebar {
+        display: block;
+    }
+    #menuButton {
+        display: none;
+    }
+} 

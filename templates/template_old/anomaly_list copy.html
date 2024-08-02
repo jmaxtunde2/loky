@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Anomaly Detection List {% endblock title %}
+{% block content %}
+    <div class="container">
+        <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
+        <form>
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+                        </div>
+                        <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
+                    </div>
+                    <ul id="suggestions" class="list-group"></ul>
+                </div>
+            </div>
+        </form>
+        <h1 class="mt-3">Anomalies Detection 
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                ?
+            </button>
+        </h1>
+        {% for image in images %}
+            <h2><a href="{% url 'anomaly_detail' image|cut:'anomaly/anomalies_'|cut:'.png' %}">{{ image|cut:'anomaly/anomalies_'|cut:'.png' }}</a></h2>
+            <img src="{% static image %}" alt="{{ image }}">
+        {% endfor %}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">What is Anomaly In cryptocurrency ?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b>Anomaly detection</b> is a technique used to identify unusual patterns that do not conform to expected behavior, known as anomalies or outliers. These anomalies can indicate critical incidents, such as potential fraud, technical glitches, or significant shifts in data patterns. 
+                </p>
+                <p>
+                    Imagine a cryptocurrency typically trades with a stable volume and gradual price changes. Suddenly, there is a significant spike in trading volume and a sharp increase in price. This anomaly could be due to:
+
+                    <ul>
+                        <li>Market Manipulation: A coordinated effort to artificially inflate the price.</li>
+                        <li>Insider Trading: Someone with insider knowledge making significant trades based on non-public information.</li>
+                        <li> News Event: A major news event affecting the cryptocurrency market.</li>
+                    </ul>
+                </p>
+                <p>
+                    Detecting such anomalies can alert traders to investigate further and make informed decisions, such as holding off on buying into a pump-and-dump scheme or selling off assets before a suspected market crash.
+                </p>
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}

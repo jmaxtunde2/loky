@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Anomaly for {{ crypto_id }} {% endblock title %}
+{% block content %}
+    <div class="container">
+        <h1>Anomalies for <span class="notranslate"> {{ anomalies.0.crypto_id }} </span></h1>
+        {% if image %}
+            <img src="{% static image %}" alt="Anomalies">
+        {% endif %}
+        <ul>
+            {% for anomaly in anomalies %}
+                <li{% if anomaly.is_anomaly %} class="anomaly-highlight"{% endif %}>
+                    {{ anomaly.timestamp }}: {{ anomaly.price }} (Volume: {{ anomaly.volume }}) - {{ anomaly.is_anomaly|yesno:"Anomaly,Normal" }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+{% endblock content %}

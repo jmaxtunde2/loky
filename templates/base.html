@@ -2,104 +2,314 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <!-- Bootstrap CSS -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
-        <title>{% block title %} LOKY {% endblock title %}</title>
-        
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">    
+      <!-- favicon-->
+      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <!-- Google Fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+      <!-- owl.carousel CSS-->
+      <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'css/owl.theme.css' %}">
+      <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+      <!-- animate CSS-->
+      <link rel="stylesheet" href="{% static 'css/animate.css' %} ">
+      <!-- normalize CSS -->
+      <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+      <!-- meanmenu icon CSS-->
+      <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+      <!-- main CSS-->
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+      <!-- morrisjs CSS -->
+      <link rel="stylesheet" href="{% static 'css/morrisjs/morris.css' %}">
+      <!-- mCustomScrollbar CSS-->
+      <link rel="stylesheet" href="{% static 'css/scrollbar/jquery.mCustomScrollbar.min.css' %}">
+      <!-- metisMenu CSS -->
+      <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu-vertical.css' %}">
+      <!-- calendar CSS -->
+      <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.print.min.css' %}">
+      <!-- style CSS -->
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/modals.css' %}">
+      <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+      <link rel="stylesheet" href="{% static 'css/alerts.css' %}">
+      <!-- responsive CSS-->
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <title>{% block title %} LOKY {% endblock title %}</title>        
     </head>
-<body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark mb-4">
+  <body>
+      <!-- Start Left menu area -->
+      <div class="left-sidebar-pro">
+          <nav id="sidebar" class="">
+              <div class="sidebar-header">
+                  <a href="{% url 'home' %}"><img class="main-logo" src="{% static 'img/logo/logo.jpg' %}" alt="Luckyai Logo" width="200" height="auto" /></a>
+                  <strong><a href="{% url 'home' %}"><img src="{% static 'img/logo/logosn.jpg' %}" alt="Luckyai Logo" /></a></strong>   
+              </div>
+              <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                  <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+                      <li>
+                          <a title="Home Page" href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}actived{% endif %}">
+                            <span class="fa fa-home {% if request.resolver_match.url_name == 'home' %}actived{% endif %}" aria-hidden="true"></span> <span class="mini-click-non {% if request.resolver_match.url_name == 'home' %}actived{% endif %}">Home</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a title="Crypto Sentiment Analysis" href="{% url 'sentiment_analysis' 'BTC' %}" class="{% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}" aria-expanded="false">
+                            <span class="fa fa-dashboard {% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% else %}text-success{% endif %}" aria-hidden="true"></span> 
+                            <span class="mini-click-non {% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}">Sentiment Analysis</span>
+                          </a>
+                      </li>
+                      <li>
+                        <a title="Token Analysis" href="{% url 'token_analyis' 'arth' %}" class="{% if request.resolver_match.url_name == 'token_analyis' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-bitcoin {% if request.resolver_match.url_name == 'token_analyis' %}actived{% else %}text-warning{% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'token_analyis' %}actived{% endif %}">Token Analysis</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a title="Crypto Trading Anomaly Detection" href="{% url 'anomaly_list' %}" class="{% if request.resolver_match.url_name == 'anomaly_list' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-database {% if request.resolver_match.url_name == 'anomaly_list' %}actived{% else %}text-danger{% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'anomaly_list' %}actived{% endif %}">Anomaly Detection</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a title="Risk Management" href="{% url 'risk_assessment' %}" class="{% if request.resolver_match.url_name == 'risk_assessment' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-wrench {% if request.resolver_match.url_name == 'risk_assessment' %}actived {% else %} text-danger {% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'risk_assessment' %}actived{% endif %}">Risk Management</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a title="Crypto Prediction" href="#" class="{% if request.resolver_match.url_name == 'price_prediction' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-dollar {% if request.resolver_match.url_name == 'price_prediction' %}actived {% else %} text-success {% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'price_prediction' %}actived{% endif %}">Price Prediction</span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a title="Portofolio Optimization" href="#" class="{% if request.resolver_match.url_name == 'portofolio' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-bar-chart {% if request.resolver_match.url_name == 'portofolio' %}actived {% else %} text-warning {% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'portofolio' %}actived{% endif %}">Portofolio Optimization</span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a title="Advertissment" href="{% url 'advertise' %}" class="{% if request.resolver_match.url_name == 'advertise' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-tag {% if request.resolver_match.url_name == 'advertise' %}actived {% else %} text-success {% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'advertise' %}actived{% endif %}">Promos</span>
+                        </a>
+                      </li>
+                      <li>
+                        <span class="mt-4 ml-4">Translate</span>
+                        <div class="gtranslate_wrapper"></div>   
+                      </li>      
+                    </ul>
+                  </nav>
+              </div>
+          </nav>
+      </div>
+      <!-- Start Welcome area -->
+      <div class="all-content-wrapper">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold fs-1" href="{% url 'home' %}">
-            <img src="{% static 'img/logo.jpg' %}" alt="LOKY Logo" width="200" height="auto">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto d-flex  mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'about' %}active{% endif %}" aria-current="page" href="{% url 'about' %}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fs-4" href="#">API</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fs-4 {% if request.resolver_match.url_name == 'donate' %}active{% endif %}" aria-current="page" href="{% url 'donate' %}">Donate</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Community
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">FAQ</a></li>
-                  <li><a class="dropdown-item" href="#">Learn</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Forum</a></li>
-                </ul>
-              </li>
-             
-            </ul>
-          </div>
-        </div>
-    </nav>
-    <div class="container-fluid" style="margin-top: 90px">
-      <div class="row flex-nowrap">
-        <div class="col-auto px-0">
-          <div id="sidebar" class="collapse collapse-horizontal show border-end">
-            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
-              <a href="{% url 'home' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'home' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-house"></i> <span>Home</span>
-              </a>
-              <a href="{% url 'sentiment_analysis' 'BTC' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'sentiment_analysis' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fa-solid fa-gauge-high"></i> <span>Sentiment Analysis</span>
-              </a>
-              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'price_prediction' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-dollar"></i> <span>Price Prediction</span>
-              </a>
-              <a href="{% url 'token_analyis' 'arth' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'analyze_token' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fa-brands fa-bitcoin"></i> <span>Token Analysis</span>
-              </a>
-              <a href="{% url 'anomaly_list' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'anomaly_list' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-database"></i> <span>Fraud Detection</span>
-              </a>
-              <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'portfolio_optimization' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-wallet"></i> <span>Portofolio Optimization</span>
-              </a>
-              <a href="{% url 'risk_assessment' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'risk_assessment' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fa-solid fa-screwdriver-wrench"></i> <span>Risk Assessment</span>
-              </a>
-              <!-- <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'campaign' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-camera"></i> <span>Campaign</span>
-              </a> -->
-              
-              <a href="{% url 'advertise' %}" class="list-group-item border-end-0 d-inline-block text-truncate nav-link fw-bold {% if request.resolver_match.url_name == 'advertise' %}active{% endif %}" data-bs-parent="#sidebar">
-                <i class="fas fa-calendar"></i> <span>Advertissment</span>
-              </a>
-              <span class="mt-4 ml-4">Translate</span>
-              <div class="gtranslate_wrapper"></div>
-              <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","de","it","es","pt"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_open_direction":"top"}</script>
-              <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="{% url 'home' %}"><img class="main-logo" src="{% static 'img/logo/logosn.jpg' %}" alt="Luckyai Logo" /></a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <main class="col ps-md-2 pt-2">
-         
-          <a href="#" id="menuButton" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-2 text-decoration-none mb-2 backgroundLoky"> 
-            <i class="fas fa-list" style="padding-top:10px;"></i> <span>Menu</span>
-        </a>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                                              <i class="fa fa-list"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                            <ul class="nav navbar-nav mai-top-nav">
+                                                <li class="nav-item">
+                                                  <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}actived{% endif %}">About</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                  <a href="{% url 'donate' %}" class="nav-link {% if request.resolver_match.url_name == 'donate' %}actived{% endif %}">Donate</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                  <a href="#" class="nav-link {% if request.resolver_match.url_name == 'api' %}actived{% endif %}">API</a>
+                                                </li>
+                                                <li class="nav-item dropdown res-dis-nn">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Community <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                    <div role="menu" class="dropdown-menu animated zoomIn">
+                                                        <a href="#" class="dropdown-item">FAQ</a>
+                                                        <a href="#" class="dropdown-item">Blog</a>
+                                                        <a href="#" class="dropdown-item">Forum</a>
+                                                        <a href="#" class="dropdown-item">Social</a>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">Support</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                                  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul class="mobile-menu-nav">
+                                      <li> 
+                                        <a title="Home Page" href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}actived{% endif %}">
+                                          <span class="fa fa-home" aria-hidden="true"></span> <span class="mini-click-non">Home</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="Sentiment Analysis" href="{% url 'sentiment_analysis' 'BTC' %}" class="{% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-dashboard text-success" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Sentiment Analysis</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="Token Analysis" href="{% url 'token_analyis' 'arth' %}" class="{% if request.resolver_match.url_name == 'token_analyis' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-bitcoin text-warning" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Token Analysis</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="Anomaly Detection" href="{% url 'anomaly_list' %}" class="{% if request.resolver_match.url_name == 'anomaly_list' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-database text-danger" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Anomaly Detection</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="Risk Management" href="{% url 'risk_assessment' %}" class="{% if request.resolver_match.url_name == 'risk_assessment' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-wrench text-danger" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Risk Management</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="Price Prediction" href="#" class="{% if request.resolver_match.url_name == 'price_prediction' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-dollar text-success" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Price Prediction</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a title="ortofolio Optimization" href="#" class="{% if request.resolver_match.url_name == 'portofolio' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-users text-warning" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Portofolio Optimization</span>
+                                        </a>
+                                      </li>  
+                                      <li>
+                                        <a title="Advertissment" href="{% url 'advertise' %}" class="{% if request.resolver_match.url_name == 'advertise' %}actived{% endif %}" aria-expanded="false">
+                                          <span class="fa fa-tag text-info" aria-hidden="true"></span> 
+                                          <span class="mini-click-non">Promos</span>
+                                        </a>
+                                      </li>  
+                                      <li>
+                                        <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}actived{% endif %}"> <span class="fa fa-users text-info" aria-hidden="true"></span> About</a>
+                                      </li>  
+                                      <li><a href="{% url 'donate' %}" class="nav-link {% if request.resolver_match.url_name == 'donate' %}actived{% endif %}"> <span class="fa fa-money text-warning" aria-hidden="true"></span> Donate</a></li>  
+                                      <li><a href="#" class="nav-link {% if request.resolver_match.url_name == 'api' %}actived{% endif %}"> <span class="fa fa-wifi text-danger" aria-hidden="true"></span>  API</a></li>   
+                                      <li><div class="gtranslate_wrapper"></div> </li>
+                                                                         
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu end -->            
+        </div>
           {% block content %}
           {% endblock content %}
-        </main>
-      </div>
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2024. All rights reserved.>LUCKY AI</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
       
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>    
-    <script src="{% static 'js/custom.js' %}"></script>
+      <!-- jquery -->
+      <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+      <!-- bootstrap JS-->
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <!-- wow JS -->
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!-- price-slider JS-->
+      <script src="{% static 'js/jquery-price-slider.js' %}"></script>
+      <!-- meanmenu JS -->
+      <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
+      <!-- owl.carousel JS -->
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <!-- sticky JS -->
+      <script src="{% static 'js/jquery.sticky.js' %}"></script>
+      <!-- scrollUp JS -->
+      <script src="{% static 'js/jquery.scrollUp.min.' %}"></script>
+       <!-- modernizr JS-->
+       <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+      <!-- counterup JS -->
+      <script src="{% static 'js/counterup/jquery.counterup.min.js' %}"></script>
+      <script src="{% static 'js/counterup/waypoints.min.js' %}"></script>
+      <script src="{% static 'js/counterup/counterup-active.js' %}"></script>
+      <!-- mCustomScrollbar JS-->
+      <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 'js/scrollbar/mCustomScrollbar-active.js' %}"></script>
+      <!-- metisMenu JS -->
+      <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
+      <script src="{% static 'js/metisMenu/metisMenu-active.js' %}"></script>
+      <!-- morrisjs JS -->
+      <script src="{% static 'js/morrisjs/raphael-min.js' %}"></script>
+      <script src="{% static 'js/morrisjs/morris.js' %}"></script>
+      <script src="{% static 'js/morrisjs/morris-active.js' %}"></script>
+      <!-- morrisjs JS-->
+      <script src="{% static 'js/sparkline/jquery.sparkline.min.js' %}"></script>
+      <script src="{% static 'js/sparkline/jquery.charts-sparkline.js' %}"></script>
+      <script src="{% static 'js/sparkline/sparkline-active.js' %}"></script>
+      <!-- calendar JS-->
+      <script src="{% static 'js/calendar/moment.min.js' %}"></script>
+      <script src="{% static 'js/calendar/fullcalendar.min.js' %}"></script>
+      <script src="{% static 'js/calendar/fullcalendar-active.js' %}"></script>
+      <!-- plugins JS-->
+      <script src="{% static 'js/plugins.js' %}"></script>
+      <!-- main JS -->
+      <script src="{% static 'js/main.js' %}"></script>
+      <!-- tawk chat JS-->
+      <script src="{% static 'js/tawk-chat.js' %}"></script>
+      <script>window.gtranslateSettings = {"default_language":"en","languages":["en","fr","de","it","es","pt"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"inline","switcher_close_direction":"top"}</script>
+      <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>  
     {% block scripts %}
     {% endblock scripts %}
-   </body>
+  </body>
 </html>

@@ -1,189 +1,242 @@
 {% extends 'base.html' %}
-{% block title %}Token Analysis{% endblock title %}
+{% block title %}Home{% endblock title %}
 {% block content %}
-<div class="container">
-    <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
-    <form>
-        <div class="form-row align-items-center">
-            <div class="col-auto">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Token Analysis</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
                 </div>
-                <ul id="suggestions" class="list-group"></ul>
             </div>
         </div>
-    </form>
-    <!-- TAB THAT LIST DIFFERENT SENTIMENT ANALYSIS  -->
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active textLoky" data-bs-toggle="tab" href="#home">Token Analysis</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu1">Features Analysis</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link textLoky" data-bs-toggle="tab" href="#menu2">Community Analysis</a>
-        </li>
-       
-    </ul>
-    
-    <div class="tab-content mt-4">
-        <div id="home" class="tab-pane fade show active">
-           
-
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>How do I study a cryptocurrency project before investing. </strong>  <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal"> Check It Now </button>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <h1 class="mt-3">Token Analysis for {{ token.name }} ({{ token.symbol }}) </h1><hr/>
-           
-            <div class="row">              
-                <ul class="list-group list-group-flush">                   
-                    <h3>Votes & Subscibers</h3>
-                    <li class="list-group-item">
-                        <button type="button" class="btn "> Sentiment Vote Up : {{token.sentiment_votes_up}} </button>
-                        <button type="button" class="btn"> Sentiment Vote Down : {{token.sentiment_votes_down}} </button>
-                        <button type="button" class="btn"> Facebook Likes : {{token.facebook_likes}}</button>
-                        <button type="button" class="btn"> Twitter Subscribers: {{token.twitter_followers}} </button>
-                        <button type="button" class="btn"> Reddit Subscribers: {{token.reddit_subscribers}} </button>
-                        <button type="button" class="btn"> Telegram Subscribers: {{token.telegram_channel}} </button>
-                    </li>
-                    <h3>Githubs & Performance</h3>
-                    <li class="list-group-item">
-                        <button type="button" class="btn "> Fork : {{token.forks}} </button>
-                        <button type="button" class="btn"> Star : {{token.star}} </button>
-                        <button type="button" class="btn"> Total Issues : {{token.total_issues}}</button>
-                        <button type="button" class="btn"> Total Subscribers: {{token.subscribers}} </button>
-                    </li>
-                    <li class="list-group-item">
-                        <h3>Description</h3>
-                        <p>{{token.description}}</p>
-                    </li>
-                    <h3>Official Communication platform</h3>
-                    <li class="list-group-item">
-                        <a href="{{ token.website }}" target="_blank" class="btn btn-primary backgroundLoky"> Website </a>
-                        <a href="{{ token.whitepaper }}" target="_blank" class="btn btn-primary backgroundLoky"> Whitepaper </a>
-                        <a href="{{ token.official_forum }}" target="_blank" class="btn btn-primary backgroundLoky"> Official Forum </a>
-                        <a href="{{ token.announcement }}" target="_blank" class="btn btn-primary backgroundLoky">  Announcement </a>
-                        <a href="{{ token.twitter }}" target="_blank" class="btn btn-primary backgroundLoky"> Twitter </a>
-                        <a href="{{ token.telegram }}" target="_blank" class="btn btn-primary backgroundLoky"> Telegram </a>
-                        <a href="{{ token.reddit }}" target="_blank" class="btn btn-primary backgroundLoky"> Reddit </a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h1>Feature Analysis  <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#featureAnalysis">
-                    ?
-                </button></h1>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-row align-items-center">
-                    <select name="aspect" class="form-control">
-                        <option>-- Select One Feature --</option>
-                        <option value="whitepaper">Whitepaper</option>
-                        <option value="team">Team Background</option>
-                        <option value="technology">Technology</option>
-                        <option value="partnerships">Partnerships</option>
-                        <option value="roadmap">Roadmap</option>
-                    </select><br>
-                    <textarea name="document" rows="10" class="form-control" cols="50">Enter Description</textarea><br>
-                   
-                    <button type="submit" class="btn backgroundLoky">Analyze</button>
-                </div>
-            </form>
-           
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <a href='{% url "sentiment_analysis" token.symbol %}' class="btn btn-primary backgroundLoky"> Sentiment Analysis
-            </a>
-           
-        </div>
-      
-      
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt mailbox-hd">
+                        <div class="text-center p-xs font-normal">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="inlineFormInputGroup"  placeholder="Search for cryptocurrency..."> 
+                                <span class="input-group-btn active-hook"> 
+                                    <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-search"></span>Search </button>
+                                </span>
+                            </div>
+                            <ul id="suggestions" class="list-group"></ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="admintab-wrap edu-tab1 mg-t-20">
+                            <ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1">
+                                <li class="active"><a data-toggle="tab" href="#TabToken"><span class="edu-icon edu-analytics tab-custon-ic"></span>Token Analysis</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#TabFeature"><span class="edu-icon edu-analytics-arrow tab-custon-ic"></span>Features Analysis</a>
+                                </li>
+                                <li><a data-toggle="tab" href="#TabCommunity"><span class="edu-icon edu-analytics-bridge tab-custon-ic"></span>Community Analysis</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="TabToken" class="tab-pane in active flipInX custon-tab-style1 mb-2">
+                                    
+                                    <span class="mt-10"></span>
+                                    <div class="alert alert-warning alert-success-style2 alert-st-bg1 mt-10">
+                                        <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                                <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                                            </button>
+                                        <i class="fa fa-info-circle edu-inform admin-check-pro admin-check-pro-clr1" aria-hidden="true"></i>
+                                        <p> How do I study a cryptocurrency project before investing.
+                                            <!-- Button trigger modal -->
+                                            <a class="btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalhdbgcl" style="color: white;"> Chech it now</a>
+                                        </p>                                        
+                                    </div>                                   
+
+                                    <h1 class="mt-3">Token Analysis for {{ token.name }} ({{ token.symbol }}) </h1><hr/>
+                                   
+                                    <div class="row">              
+                                        <ul class="list-group list-group-flush">                   
+                                            <h3>Votes & Subscibers</h3>
+                                            <li class="list-group-item">
+                                                <button type="button" class="btn "> Sentiment Vote Up : {{token.sentiment_votes_up}} </button>
+                                                <button type="button" class="btn"> Sentiment Vote Down : {{token.sentiment_votes_down}} </button>
+                                                <button type="button" class="btn"> Facebook Likes : {{token.facebook_likes}}</button>
+                                                <button type="button" class="btn"> Twitter Subscribers: {{token.twitter_followers}} </button>
+                                                <button type="button" class="btn"> Reddit Subscribers: {{token.reddit_subscribers}} </button>
+                                                <button type="button" class="btn"> Telegram Subscribers: {{token.telegram_channel}} </button>
+                                            </li>
+                                            <h3>Githubs & Performance</h3>
+                                            <li class="list-group-item">
+                                                <button type="button" class="btn "> Fork : {{token.forks}} </button>
+                                                <button type="button" class="btn"> Star : {{token.star}} </button>
+                                                <button type="button" class="btn"> Total Issues : {{token.total_issues}}</button>
+                                                <button type="button" class="btn"> Total Subscribers: {{token.subscribers}} </button>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <h3>Description</h3>
+                                                <p>{{token.description}}</p>
+                                            </li>
+                                            <h3>Official Communication platform</h3>
+                                            <li class="list-group-item">
+                                                <a href="{{ token.website }}" target="_blank" class="btn btn-primary backgroundLoky"> Website </a>
+                                                <a href="{{ token.whitepaper }}" target="_blank" class="btn btn-primary backgroundLoky"> Whitepaper </a>
+                                                <a href="{{ token.official_forum }}" target="_blank" class="btn btn-primary backgroundLoky"> Official Forum </a>
+                                                <a href="{{ token.announcement }}" target="_blank" class="btn btn-primary backgroundLoky">  Announcement </a>
+                                                <a href="{{ token.twitter }}" target="_blank" class="btn btn-primary backgroundLoky"> Twitter </a>
+                                                <a href="{{ token.telegram }}" target="_blank" class="btn btn-primary backgroundLoky"> Telegram </a>
+                                                <a href="{{ token.reddit }}" target="_blank" class="btn btn-primary backgroundLoky"> Reddit </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>                                
+                                </div>
+                                <div id="TabFeature" class="tab-pane flipInX custon-tab-style1">
+                                    <h1>Feature Analysis  
+                                        <!-- Button trigger modal -->
+                                        <a class="btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalFeature" style="color: white;"> What is it ?</a></h1>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="form-row align-items-center">
+                                            <select name="aspect" class="form-control">
+                                                <option>-- Select One Feature --</option>
+                                                <option value="whitepaper">Whitepaper</option>
+                                                <option value="team">Team Background</option>
+                                                <option value="technology">Technology</option>
+                                                <option value="partnerships">Partnerships</option>
+                                                <option value="roadmap">Roadmap</option>
+                                            </select><br>
+                                            <textarea name="document" rows="10" class="form-control" cols="50">Enter Description</textarea><br>
+                                           
+                                            <button type="submit" class="btn backgroundLoky">Analyze</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="TabCommunity" class="tab-pane animated flipInX custon-tab-style1">
+                                    <a href='{% url "sentiment_analysis" token.symbol %}' class="btn btn-primary backgroundLoky"> Sentiment Analysis </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'advert_section.html' %}
+        </div>
+    </div>
+    <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
         <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">How do I study a cryptocurrency project before investing ?</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Identifying a crypto project involves evaluating various factors and aspects to understand its legitimacy, potential, and overall quality.
-                    Here are some key elements and tips that crypto traders can consider when evaluating a crypto project:
-                </p>
-                <p>
-                    <b> 1. Whitepaper Evaluation </b>
-                    
-                </p>
-                <p>
-                    <b> 2. Team Background </b>
-                </p>
-                <p>
-                    <b> 3. Technology and Innovation </b>
-                </p>
-                <p>
-                    <b> 4. Partnerships and Collaborations </b>
-                </p>
-                <p>
-                    <b> 5. Community Feedback and Sentiment</b>
-                </p>
-                <p>
-                    <b>6. Market Position and Competitors</b>
-                </p>  
-                <p>
-                    <b>7. Regulatory Compliance</b>
-                </p>  
-                <p>
-                    <b>8. Security Measures</b>
-                </p>  
-                <p>
-                    <b>9. Historical Performance</b>
-                </p>  
-                <p>
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        <strong> LOKY AI-based model has been trained to provide an accurate whitepaper analysis, technology analysis and partnership analysis. Community Feedback and Sentiment have already been handled in our sentiment analysis</strong> 
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">How do I study a cryptocurrency project before investing ?</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
                     </div>
-                </p>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Identifying a crypto project involves evaluating various factors and aspects to understand its legitimacy, potential, and overall quality.
+                        Here are some key elements and tips that crypto traders can consider when evaluating a crypto project:
+                    </p><br/>
+                    <p>
+                        <b> 1. Whitepaper Evaluation </b>
+                        
+                    </p>
+                    <p>
+                        <b> 2. Team Background </b>
+                    </p>
+                    <p>
+                        <b> 3. Technology and Innovation </b>
+                    </p>
+                    <p>
+                        <b> 4. Partnerships and Collaborations </b>
+                    </p>
+                    <p>
+                        <b> 5. Community Feedback and Sentiment</b>
+                    </p>
+                    <p>
+                        <b>6. Market Position and Competitors</b>
+                    </p>  
+                    <p>
+                        <b>7. Regulatory Compliance</b>
+                    </p>  
+                    <p>
+                        <b>8. Security Measures</b>
+                    </p>  
+                    <p>
+                        <b>9. Historical Performance</b>
+                    </p>  
+                    <br/>
+                    <p>
+                        LOKY AI-based model has been trained to provide an accurate whitepaper analysis, technology analysis and partnership analysis. 
+                        Community Feedback and Sentiment have already been handled in our sentiment analysis
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
-            </div>
-        </div>
         </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="featureAnalysis" tabindex="-1" aria-labelledby="featureAnalysisLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5" id="featureAnalysisLabel">Feature Analysis</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <p>
-                Identifying a crypto project involves evaluating various factors and aspects to understand its legitimacy, potential, and overall quality.
-                Here are some key elements and tips that crypto traders can consider when evaluating a crypto project:
-            </p>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
-        </div>
-    </div>
-    </div>
-</div>
-</div>
 
+    <div id="InformationproModalFeature" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">Feature Analysis </h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Identifying a crypto project involves evaluating various factors and aspects to understand its legitimacy, potential, and overall quality.
+                        Here are some key elements and tips that Luckyai consider when evaluating a crypto project:
+                    </p>
+                    <p>
+                        <b>Thoroughly Read the Whitepaper: </b> Ensure the whitepaper provides a clear and comprehensive explanation of the project’s vision, technology, and roadmap. Be wary of vague or overly technical documents that lack substance.
+                    </p>
+                    <p>
+                        <b>Evaluate the Team and Partnerships:</b> Research the backgrounds of the founding team and advisors. Strong partnerships with reputable companies can be a positive indicator.
+                    </p>
+                    <p>
+                        <b>Analyze Tokenomics:</b> Understand the token supply, distribution model, and utility within the ecosystem. Projects with well-defined and sustainable tokenomics are often more viable.
+                    </p>                
+                    <p>
+                        <b> Community Sentiment:</b>  Active and engaged communities on platforms like Reddit and Telegram can indicate strong support and interest in the project. Analyze sentiment using tools like NLP to gauge public opinion.
+                    </p>
+                    <p>
+                        <b>Check Market Performance:</b> Look at the market cap, price history, and trading volume. Higher liquidity and stable performance can indicate a more reliable investment.
+                    </p>
+                    <p>
+                        <b>Stay Updated with News and Developments:</b> Follow the project’s official channels and stay updated with their announcements and progress. Major developments or setbacks can significantly impact the project’s success.
+                    </p>
+                    <p>
+                        <b>Diversify Investments:</b> Don’t put all your funds into a single project. Diversifying across multiple projects can mitigate risks.
+                    </p>   
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 {% block scripts %}
 <script>
@@ -200,8 +253,8 @@
                     success: function(data) {
                         $('#suggestions').empty();
                         $.each(data, function(key, value) {
-                            var link = '{% url "token_analyis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
-                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
+                            var link = '{% url "sentiment_analysis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
+                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link notranslate" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
                         });
                     },
                 });

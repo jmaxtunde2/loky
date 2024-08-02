@@ -2,64 +2,97 @@
 {% load static %}
 {% block title %} Anomaly Detection List {% endblock title %}
 {% block content %}
-    <div class="container">
-        <!-- Search for crypto currencies BTC, ADA, the search should be responsive by suggesting crypto, then click on each each should lead the sentiment analysis of the crypto selected -->
-        <form>
-            <div class="form-row align-items-center">
-                <div class="col-auto">
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text backgroundLoky"><i class="fas fa-search" style="font-size: 25px;"></i></div>
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
                         </div>
-                        <input type="text" class="form-control inputfocus" id="inlineFormInputGroup" placeholder="search for Cryptocurrencies">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Anomalies List</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul id="suggestions" class="list-group"></ul>
                 </div>
             </div>
-        </form>
-        <h1 class="mt-3">Anomalies Detection 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary backgroundLoky" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                ?
-            </button>
-        </h1>
-        {% for image in images %}
-            <h2><a href="{% url 'anomaly_detail' image|cut:'anomaly/anomalies_'|cut:'.png' %}">{{ image|cut:'anomaly/anomalies_'|cut:'.png' }}</a></h2>
-            <img src="{% static image %}" alt="{{ image }}">
-        {% endfor %}
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">What is Anomaly In cryptocurrency ?</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    <b>Anomaly detection</b> is a technique used to identify unusual patterns that do not conform to expected behavior, known as anomalies or outliers. These anomalies can indicate critical incidents, such as potential fraud, technical glitches, or significant shifts in data patterns. 
-                </p>
-                <p>
-                    Imagine a cryptocurrency typically trades with a stable volume and gradual price changes. Suddenly, there is a significant spike in trading volume and a sharp increase in price. This anomaly could be due to:
-
-                    <ul>
-                        <li>Market Manipulation: A coordinated effort to artificially inflate the price.</li>
-                        <li>Insider Trading: Someone with insider knowledge making significant trades based on non-public information.</li>
-                        <li> News Event: A major news event affecting the cryptocurrency market.</li>
-                    </ul>
-                </p>
-                <p>
-                    Detecting such anomalies can alert traders to investigate further and make informed decisions, such as holding off on buying into a pump-and-dump scheme or selling off assets before a suspected market crash.
-                </p>
-                
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn backgroundLoky" data-bs-dismiss="modal">I Understand</button>
-            </div>
-        </div>
         </div>
     </div>
 </div>
-    
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt mailbox-hd">
+                        <div class="text-center p-xs font-normal">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="inlineFormInputGroup"  placeholder="Search for cryptocurrency..."> 
+                                <span class="input-group-btn active-hook"> 
+                                    <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-search"></span>Search </button>
+                                </span>
+                            </div>
+                            <ul id="suggestions" class="list-group"></ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="admintab-wrap edu-tab1 mg-t-10 scrollable-row-a">
+                            <h1 class="mt-3">Anomalies Detection 
+                                <!-- Button trigger modal -->
+                                <a class="mg-b-10 btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalhdbgcl" style="color: white;"> What is it?</a>
+                            </h1>
+                            {% for image in images %}
+                                <h2><a href="{% url 'anomaly_detail' image|cut:'anomaly/anomalies_'|cut:'.png' %}" class="text-warning">{{ image|cut:'anomaly/anomalies_'|cut:'.png' }}</a></h2>
+                                <img src="{% static image %}" alt="{{ image }}">
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'advert_section.html' %}
+        </div>
+    </div>
+    <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">What is Anomaly In cryptocurrency ?</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Anomaly detection</b> is a technique used to identify unusual patterns that do not conform to expected behavior, known as anomalies or outliers. These anomalies can indicate critical incidents, such as potential fraud, technical glitches, or significant shifts in data patterns. 
+                    </p>
+                    <p>
+                        Imagine a cryptocurrency typically trades with a stable volume and gradual price changes. Suddenly, there is a significant spike in trading volume and a sharp increase in price. This anomaly could be due to:
+                        <br/>
+                        <p>
+                            <p><i>Market Manipulation: A coordinated effort to artificially inflate the price.</i></p>
+                            <p><i> Insider Trading: Someone with insider knowledge making significant trades based on non-public information.</i></p>
+                            <p> <i> News Event: A major news event affecting the cryptocurrency market.</i></p>
+                        </p>
+                        <br/>
+                    </p>
+                    <p>
+                        Detecting such anomalies can alert traders to investigate further and make informed decisions, such as holding off on buying into a pump-and-dump scheme or selling off assets before a suspected market crash.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
