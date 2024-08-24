@@ -139,3 +139,38 @@ def token_search(request):
         results = [{'name': token.name, 'symbol': token.symbol} for token in tokens]
         return JsonResponse(results, safe=False)
     return JsonResponse([], safe=False)
+
+# sentiment_analysis/views.py
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+from django.shortcuts import render
+from .models import BitcoinSentiment
+
+def bitcoin_sentiment_view(request):
+    sentiments = BitcoinSentiment.objects.all().order_by('date')
+
+    dates = [s.date for s in sentiments]
+    prices = [s.price for s in sentiments]
+    means = [s.mean for s in sentiments]
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(dates, prices, label='Price', color='blue')
+    plt.plot(dates, means, label='Mean Sentiment', color='orange')
+    plt.xlabel('Date')
+    plt.ylabel('Value')
+    plt.title('Bitcoin Sentiment and Price Over Time')
+    plt.legend()
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+    image_b64 = base64.b64encode(image_png).decode('utf-8')
+
+    return render(request, 'bitcoin_sentiment.html', {
+        'chart': image_b64,
+        'sentiments': sentiments,
+    })
+

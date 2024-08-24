@@ -25,15 +25,16 @@ class Command(BaseCommand):
                 response = requests.get(url, params=params)
                 response.raise_for_status()
                 data = response.json()
-                
+
                 if not data:
                     break
 
                 for item in data:
                     token, created = Token.objects.update_or_create(
-                        symbol=item['symbol'],
+                        crypto_id=item['id'],  # Use crypto_id for uniqueness
                         defaults={
                             'name': item['name'],
+                            'symbol': item['symbol'],
                             'market_cap': item['market_cap'],
                             'price': item['current_price'],
                             'volume_24h': item['total_volume'],
@@ -46,10 +47,10 @@ class Command(BaseCommand):
                         self.stdout.write(self.style.SUCCESS(f'Successfully created token {token.name} ({token.symbol})'))
                     else:
                         self.stdout.write(self.style.SUCCESS(f'Successfully updated token {token.name} ({token.symbol})'))
-                
+
                 params['page'] += 1  # Go to the next page
-                time.sleep(1)  # Sleep to respect API rate limits
-                
+                time.sleep(5)  # Sleep to respect API rate limits
+
             except requests.exceptions.RequestException as e:
                 self.stderr.write(f'Error fetching data: {e}')
                 time.sleep(10)  # Wait before retrying

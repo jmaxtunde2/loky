@@ -61,11 +61,17 @@
                           </a>
                       </li>
                       <li>
-                          <a title="Crypto Sentiment Analysis" href="{% url 'sentiment_analysis' 'BTC' %}" class="{% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}" aria-expanded="false">
+                        <a title="Bitcoin Sentiment Analysis" href="{% url 'bitcoin_sentiment' %}" class="{% if request.resolver_match.url_name == 'bitcoin_sentiment' %}actived{% endif %}" aria-expanded="false">
+                          <span class="fa fa-dashboard {% if request.resolver_match.url_name == 'bitcoin_sentiment' %}actived{% else %}text-success{% endif %}" aria-hidden="true"></span> 
+                          <span class="mini-click-non {% if request.resolver_match.url_name == 'bitcoin_sentiment' %}actived{% endif %}">Sentiment Analysis</span>
+                        </a>
+                      </li>
+                      <!-- <li>
+                          <a title="Crypto Sentiment Analysis" href="{% url 'sentiment_analysis' 'btc' %}" class="{% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}" aria-expanded="false">
                             <span class="fa fa-dashboard {% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% else %}text-success{% endif %}" aria-hidden="true"></span> 
                             <span class="mini-click-non {% if request.resolver_match.url_name == 'sentiment_analysis' %}actived{% endif %}">Sentiment Analysis</span>
                           </a>
-                      </li>
+                      </li> -->
                       <li>
                         <a title="Token Analysis" href="{% url 'token_analyis' 'arth' %}" class="{% if request.resolver_match.url_name == 'token_analyis' %}actived{% endif %}" aria-expanded="false">
                           <span class="fa fa-bitcoin {% if request.resolver_match.url_name == 'token_analyis' %}actived{% else %}text-warning{% endif %}" aria-hidden="true"></span> 

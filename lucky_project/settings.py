@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "tailwind",
     "token_analysis",
     "anomaly_detection",
+    "funding_rate"
 ]
 
 MIDDLEWARE = [

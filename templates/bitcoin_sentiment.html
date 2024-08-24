@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Bitcoin Sentiment Analysis{% endblock title %}
+{% block content %}
+<!-- tabs start-->
+<div class="breadcome-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <img src="{% static 'img/placeadvert.png' %}" class="img-fluid" style="height: fit-content;" alt="Place Your Advert">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod">Bitcoin Sentiment Analysis</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="admintab-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="hpanel">
+                    <!-- <div class="panel-heading hbuilt mailbox-hd">
+                        <div class="text-center p-xs font-normal">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="inlineFormInputGroup"  placeholder="Search for cryptocurrency..."> 
+                                <span class="input-group-btn active-hook"> 
+                                    <button type="button" class="btn btn-sm btn-warning"><span class="fa fa-search"></span>Search </button>
+                                </span>
+                            </div>
+                            <ul id="suggestions" class="list-group"></ul>
+                        </div>
+                    </div> -->
+                    <div class="panel-body">
+                        <div class="admintab-wrap edu-tab1 mg-t-20">
+                           <div class="admintab-wrap edu-tab1 mg-t-10 scrollable-row-a">
+                                <h1> <span class="notranslate"> Bitcoin </span> Sentiment Analysis 
+                                     <!-- Button trigger modal -->
+                                    <a class="mg-b-10 btn backgroundLoky" href="#" data-toggle="modal" data-target="#InformationproModalhdbgcl" style="color: white;"> What is it?</a>
+                                </h1>
+                                <div style="text-align: center;">
+                                    <img src="data:image/png;base64,{{ chart }}" alt="Sentiment and Price Chart">
+                                </div>
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true">Date</th>
+                                            <th data-field="name" data-editable="true">Price</th>
+                                            <th data-field="email" data-editable="true">Mean Sentiment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for sentiment in sentiments %}
+                                            <tr>
+                                                <td>{{ sentiment.date }} </td>
+                                                <td>${{ sentiment.price }}</td>
+                                                <td> {{ sentiment.mean }} </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'advert_section.html' %}
+        </div>
+    </div>
+    <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header header-color-modal bg-color-2">
+                    <h4 class="modal-title">What is Sentiment Analysis ?</h4>
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>Sentiment analysis</b> is a powerful tool that uses advanced algorithms to determine the emotional tone behind a body of text. 
+                        <b>In the context of cryptocurrency, </b>it involves analyzing the opinions and emotions expressed 
+                        in various sources such as news articles, social media posts, and forum discussions about a particular cryptocurrency or the market as a whole.
+                    </p>
+                    <p>
+                        Imagine you are considering investing in a cryptocurrency✨, and you use Luckyai sentiment analysis 🔥 to scan recent social media posts and news articles. 
+                        If the analysis shows a high percentage of positive sentiments, you might feel more confident in your investment decision 😀. Conversely, if the 
+                        sentiment is overwhelmingly negative 🥵, you might choose to investigate further or reconsider your decision. <br/>
+                    </p>
+                    <p>
+                        In summary, Luckyai sentiment analysis provides valuable insights that can enhance your trading strategy, helping you to stay ahead in the fast-paced world of cryptocurrency 
+                        trading.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn" href="#" style="background-color: blueviolet;color: white;">I Understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#inlineFormInputGroup').on('keyup', function() {
+            var query = $(this).val();
+            if (query) {
+                $.ajax({
+                    url: '{% url "token_search" %}',
+                    data: {
+                        'query': query
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#suggestions').empty();
+                        $.each(data, function(key, value) {
+                            var link = '{% url "sentiment_analysis" "SYMBOL_PLACEHOLDER" %}'.replace('SYMBOL_PLACEHOLDER', value.symbol);
+                            $('#suggestions').append('<li class="list-group-item"><a class="suggestion-link notranslate" href="' + link + '">' + value.name + ' (' + value.symbol + ')</a></li>');
+                        });
+                    },
+                });
+            } else {
+                $('#suggestions').empty();
+            }
+        });
+    });
+    </script>
+{% endblock scripts %}
