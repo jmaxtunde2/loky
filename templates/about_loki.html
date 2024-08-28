@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}About LUCKY AI{% endblock title %}
+{% block og_title %}About Lucky-AI{% endblock %}
+{% block og_description %}Lucky-AI is an  AI-powered platform for DYOR (Do Your Own Research) in crypto space. Your gateway to cryptocurrency insights and maximized profits {% endblock %}
+{% block og_image %}{% static 'favicon/android-icon-144x144.png' %}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
 {% block content %}
 <!-- tabs start-->
 <div class="breadcome-area">

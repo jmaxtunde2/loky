@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} Anomaly for {{ crypto_id }} {% endblock title %}
+
+{% block og_title %}Lucky-AI{% endblock %}
+{% block og_description %}Anomaly for {{ crypto_id }}. Lucky-AI, your gateway to cryptocurrency insights and maximized profits {% endblock %}
+{% block og_image %}{% static 'favicon/android-icon-144x144.png' %}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+
 {% block content %}
     <!-- tabs start-->
     <div class="breadcome-area">

@@ -11,6 +11,7 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')), 
     path('', include('pages.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('fund-rate/', include('funding_rate.urls')),
     #re_path("accounts/", include("allauth.urls")),
 ]
 

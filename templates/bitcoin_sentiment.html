@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Bitcoin Sentiment Analysis{% endblock title %}
+
+{% block og_title %}Bitcoin Sentiment Analysis with Lucky-AI{% endblock %}
+{% block og_description %}Bitcoin Sentiment Analysis with Lucky-AI. Lucky-AI, your gateway to cryptocurrency insights and maximized profits {% endblock %}
+{% block og_image %}{% static 'favicon/android-icon-144x144.png' %}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+
 {% block content %}
 <!-- tabs start-->
 <div class="breadcome-area">
@@ -54,25 +60,58 @@
                                 <div style="text-align: center;">
                                     <img src="data:image/png;base64,{{ chart }}" alt="Sentiment and Price Chart">
                                 </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="state" data-checkbox="true">Date</th>
-                                            <th data-field="name" data-editable="true">Price</th>
-                                            <th data-field="email" data-editable="true">Mean Sentiment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for sentiment in sentiments %}
-                                            <tr>
-                                                <td>{{ sentiment.date }} </td>
-                                                <td>${{ sentiment.price }}</td>
-                                                <td> {{ sentiment.mean }} </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
+
+                                <div class="data-table-area mg-b-15">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="sparkline13-list">
+                                                    <div class="sparkline13-hd">
+                                                        <div class="main-sparkline13-hd">
+                                                            <h1>Bitcoin  <span class="table-project-n">Sentiment Analysis</span> Data</h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sparkline13-graph">
+                                                        <div class="datatable-dashv1-list custom-datatable-overright">
+                                                           
+                                                            <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                                                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th >Date</th>
+                                                                        <th >Price</th>
+                                                                        <th data-field="name" data-editable="true">Volume</th>
+                                                                        <th data-field="name" data-editable="true">Score 1</th>
+                                                                        <th data-field="name" data-editable="true">Score 2</th>
+                                                                        <th data-field="name" data-editable="true">Score 3</th>
+                                                                        <th data-field="email" data-editable="true">Mean</th>
+                                                                        <th data-field="email" data-editable="true">Sum</th>
+                                                                        <th data-field="email" data-editable="true">Count</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for sentiment in sentiments %}
+                                                                        <tr>
+                                                                            <td>{{ sentiment.date }} </td>
+                                                                            <td>${{ sentiment.price }}</td>
+                                                                            <td> {{ sentiment.volume }} </td>
+                                                                            <td> {{ sentiment.score1 }} </td>
+                                                                            <td> {{ sentiment.score2 }} </td>
+                                                                            <td> {{ sentiment.score3 }} </td>
+                                                                            <td> {{ sentiment.mean }} </td>
+                                                                            <td> {{ sentiment.sum }} </td>
+                                                                            <td> {{ sentiment.count }} </td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                     </div>

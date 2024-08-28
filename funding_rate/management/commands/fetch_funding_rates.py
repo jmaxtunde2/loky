@@ -7,7 +7,8 @@ class Command(BaseCommand):
     help = 'Fetch funding rates from multiple exchanges and store them in the database'
 
     def handle(self, *args, **options):
-        exchanges = ['binance', 'bitmex', 'bybit', 'kraken', 'okx']
+        # ['binance', 'bitmex', 'bybit', 'kraken', 'okx']
+        exchanges = ['kraken', 'okx']
         symbols = symbols = [
                                 'BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'ADA/USDT', 'SOL/USDT',
                                 'DOT/USDT', 'XRP/USDT', 'LTC/USDT', 'LINK/USDT', 'BCH/USDT',

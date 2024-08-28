@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Advertise with LOKY{% endblock title %}
+{% block title %}Advertise with Lucky-AI{% endblock title %}
+
+{% block og_title %}Advertise with Lucky-AI{% endblock %}
+{% block og_description %}Reach a wide audience of cryptocurrency enthusiasts and traders by advertising on our platform. Lucky-AI, your gateway to cryptocurrency insights and maximized profits {% endblock %}
+{% block og_image %}{% static 'favicon/android-icon-144x144.png' %}{% endblock %}
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+
 {% block content %}
 <!-- tabs start-->
 <div class="breadcome-area">
@@ -18,7 +24,7 @@
                             <ul class="breadcome-menu">
                                 <li><a href="{% url 'home' %}">Home</a> <span class="bread-slash">/</span>
                                 </li>
-                                <li><span class="bread-blod">Risk Assessment Details</span>
+                                <li><span class="bread-blod">Advertise with LOKY</span>
                                 </li>
                             </ul>
                         </div>
